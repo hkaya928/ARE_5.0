@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FAF8F3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ARE 5.0">
+<meta name="mobile-web-app-capable" content="yes">
 <title>ARE 5.0 — Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -558,6 +562,51 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 #scoreBody{width:100%; display:flex; flex-direction:column; align-items:center}
 .exam-modal #examDetail{display:flex; flex-direction:column; align-items:center; text-align:center}
 .exam-modal .score-eyebrow{margin-bottom:18px}
+
+/* ── Coach / Exam upgrades ──────────────────────────────────── */
+.coach-panel{margin:24px 0 30px; display:flex; flex-direction:column; gap:12px}
+.coach-top{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:17px 18px; box-shadow:var(--shadow-card)}
+.coach-kicker{font-family:var(--mono); font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:7px}
+.coach-title{font-size:1.06rem; font-weight:700; letter-spacing:-.015em; line-height:1.25}
+.coach-sub{font-size:.86rem; color:var(--ink-soft); line-height:1.45; margin-top:6px}
+.coach-score{flex-shrink:0; text-align:right; font-family:var(--mono); color:var(--muted); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase}
+.coach-score b{display:block; color:var(--ink); font-size:1.7rem; line-height:1; letter-spacing:-.04em}
+.coach-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.coach-cell{background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:13px 14px; box-shadow:var(--shadow-card)}
+.coach-v{font-family:var(--mono); font-size:1.2rem; font-weight:700; letter-spacing:-.03em; line-height:1}
+.coach-l{font-family:var(--mono); font-size:.55rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:6px}
+.coach-list{display:flex; flex-direction:column; gap:8px}
+.coach-topic{display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:10px 12px; box-shadow:var(--shadow-card)}
+.coach-topic span:first-child{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.86rem; font-weight:600}
+.coach-topic span:last-child{font-family:var(--mono); color:var(--muted); font-size:.68rem}
+.mode-group{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+.mode-btn{min-height:var(--tap); background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:11px 13px; text-align:left; display:flex; flex-direction:column; justify-content:center; gap:2px; box-shadow:var(--shadow-card); transition:border-color .15s, box-shadow .15s, transform .12s}
+@media (hover:hover){.mode-btn:hover{border-color:var(--line-2)}}
+.mode-btn.selected{border-color:var(--ink); box-shadow:0 0 0 1px var(--ink), var(--shadow-card)}
+.mode-btn .ml{font-size:.96rem; font-weight:700; letter-spacing:-.01em}
+.mode-btn .ms{font-family:var(--mono); color:var(--muted); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase}
+.q-timer{flex-shrink:0; font-family:var(--mono); font-size:.74rem; color:var(--ink); background:var(--card); border:1px solid var(--line-2); border-radius:7px; padding:5px 8px}
+.q-timer.warn{color:var(--wrong); border-color:var(--wrong-line); background:var(--wrong-soft)}
+.step-answered{background:var(--accent)}
+.step-flagged{box-shadow:0 0 0 1px var(--wrong-line); background:var(--wrong)}
+.exam-foot{display:flex; flex-direction:column; gap:10px}
+.exam-nav{display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px}
+.mini-btn{min-height:44px; background:var(--card); border:1px solid var(--line-2); border-radius:var(--r-md); font-weight:600; font-size:.9rem}
+.mini-btn.on{border-color:var(--wrong-line); color:var(--wrong); background:var(--wrong-soft)}
+.mini-btn:disabled{opacity:.45; cursor:not-allowed}
+.review-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:18px}
+.review-item{min-height:48px; border:1px solid var(--line); border-radius:var(--r-md); background:var(--card); font-family:var(--mono); font-weight:700; box-shadow:var(--shadow-card)}
+.review-item.answered{border-color:var(--accent-line); color:var(--accent)}
+.review-item.flagged{border-color:var(--wrong-line); color:var(--wrong); background:var(--wrong-soft)}
+.review-meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+.review-pill{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); background:var(--card); border-radius:99px; padding:7px 11px}
+.bank-links .file-input{display:none}
+.mn-card.due .mn-badge{color:var(--wrong); background:var(--wrong-soft); border-color:var(--wrong-line)}
+@media (max-width:620px){
+  .coach-grid{grid-template-columns:1fr}
+  .review-grid{grid-template-columns:repeat(4,1fr)}
+  .q-timer{display:none}
+}
 </style>
 </head>
 <body>
@@ -571,11 +620,18 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     </header>
 
     <div class="overall" id="overallStat"></div>
+    <div class="coach-panel" id="coachPanel"></div>
 
     <div class="section-label"><span>Choose a division</span><span class="rule"></span></div>
     <div class="div-grid" id="divGrid"></div>
 
     <div class="session-bar">
+      <div class="section-label"><span>Mode</span><span class="rule"></span></div>
+      <div class="mode-group" id="modeGroup">
+        <button class="mode-btn selected" data-mode="practice" onclick="setMode('practice',this)"><span class="ml">Practice</span><span class="ms">instant feedback</span></button>
+        <button class="mode-btn" data-mode="exam" onclick="setMode('exam',this)"><span class="ml">Exam</span><span class="ms">timed review</span></button>
+      </div>
+      <div class="diff-hint" id="modeHint">Practice gives explanations after each answer.</div>
       <div class="section-label"><span>Session length</span><span class="rule"></span></div>
       <div class="qc-group" id="qcGroup">
         <button class="qc-btn selected" onclick="setQC(1,this)"><span class="n">1</span><span class="u">Question</span></button>
@@ -603,6 +659,9 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     </button>
     <div class="bank-links">
       <button class="reset-link js-export" id="exportBtn" onclick="exportSite()" hidden>Export for GitHub</button>
+      <button class="reset-link" onclick="exportProgress()">Export progress</button>
+      <button class="reset-link" onclick="document.getElementById('progressImport').click()">Import progress</button>
+      <input class="file-input" id="progressImport" type="file" accept="application/json,.json" onchange="importProgressFile(this)">
       <button class="reset-link" id="clearGenLink" onclick="clearGenerated()" hidden></button>
       <button class="reset-link" id="resetPoolLink" onclick="resetPool()" hidden></button>
       <button class="reset-link" onclick="resetProgress()">Reset progress</button>
@@ -624,6 +683,7 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
       <span class="div-chip" id="qBadge">CE</span>
       <div class="q-steps" id="qSteps"></div>
       <span class="q-count-lbl mono" id="qProg">01 / 10</span>
+      <span class="q-timer" id="qTimer" hidden>--:--</span>
       <span class="q-score" id="qScore"><b>0</b>&nbsp;correct</span>
     </div>
   </div>
@@ -806,12 +866,14 @@ const DIV_DESC={
 
 let BASE=[], GEN=[];
 let selDiv=null, selQC=1;
+let selMode='practice';
 let selDiffs=new Set();   /* empty = all difficulties */
 let selMix=[...DIV_ORDER];
 const DIFFS=['easy','medium','hard','pro'];
 const DIFF_LABEL={easy:'Easy',medium:'Medium',hard:'Hard',pro:'Pro'};
 const PASS_PCT=60;        /* ARE-style cut line proxy */
 const CATA_PORTION=0.20;  /* aim ~20% select-all-that-apply per session */
+const EXAM_SEC_PER_Q=75;
 function band(pct){ return pct>=70?'above':(pct>=50?'near':'below'); }
 const BAND_LABEL={above:'Above passing',near:'Near passing',below:'Below passing'};
 function nCorrect(q){ return (q.options||[]).filter(o=>o.is_correct).length; }
@@ -864,8 +926,9 @@ const MIX_PRESETS=[
   {label:'Design & Technical', note:'PA · PPD · PDD', divs:['PA','PPD','PDD']}
 ];
 function rebuildQBANK(){ QBANK=BASE.concat(GEN); }
-let session={div:'',qs:[],idx:0,correct:0,missed:[],results:[]};
+let session={div:'',qs:[],idx:0,correct:0,missed:[],results:[],mode:'practice',answers:[],flags:{},graded:false,reviewing:false,secondsLeft:0};
 let revealed=false, cataSet=new Set();
+let examTimer=null;
 
 /* ── Load bank ──────────────────────────────────────────────── */
 function loadBank(){
@@ -876,7 +939,7 @@ function loadBank(){
     BASE=cleanQuestionBank(Array.isArray(data)?data:(data.questions||[]));
     if(!BASE.length) throw new Error('Question bank is empty');
     GEN=getGenerated(); rebuildQBANK();
-    buildGrid(); renderOverall(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
+    buildGrid(); renderOverall(); renderCoach(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
     setTimeout(()=>{overlay.style.opacity='0'; overlay.style.transition='opacity .4s'; setTimeout(()=>overlay.style.display='none',420);},220);
   }catch(e){
     overlay.innerHTML=`<div class="err-box">
@@ -949,6 +1012,73 @@ function renderOverall(){
     <div class="ov-bar"><span style="width:${pct}%"></span></div>`;
 }
 
+function renderCoach(){
+  const host=document.getElementById('coachPanel'); if(!host) return;
+  const s=getStats(), ts=getTopicStats();
+  let total=0, correct=0;
+  DIV_ORDER.forEach(d=>{ if(s[d]){ total+=s[d].answered||0; correct+=s[d].correct||0; } });
+  const readiness=total?Math.round(correct/total*100):0;
+  const weak=weakTopics(4);
+  const rec=recommendPlan();
+  if(!total){
+    host.innerHTML=`<div class="coach-top">
+      <div><div class="coach-kicker">Coach</div><div class="coach-title">Start with a 10-question diagnostic.</div><div class="coach-sub">The app will learn your weak topics, then feed those concepts back into practice.</div></div>
+      <div class="coach-score"><b>0</b>ready</div>
+    </div>
+    <button class="btn-secondary" onclick="startCoachSession()">Run diagnostic</button>`;
+    return;
+  }
+  const dueMn=dueMnemonicCount();
+  const seen=seenCount();
+  const weakHtml=weak.length?`<div class="coach-list">${weak.map(w=>`<div class="coach-topic"><span>${esc(w.topic)}</span><span>${w.correct}/${w.answered}</span></div>`).join('')}</div>`:`<div class="ov-empty">No weak topics yet. Keep going and the pattern will sharpen.</div>`;
+  host.innerHTML=`<div class="coach-top">
+    <div><div class="coach-kicker">Coach</div><div class="coach-title">${esc(rec.title)}</div><div class="coach-sub">${esc(rec.sub)}</div></div>
+    <div class="coach-score"><b>${readiness}</b>ready</div>
+  </div>
+  <div class="coach-grid">
+    <div class="coach-cell"><div class="coach-v">${total}</div><div class="coach-l">answered</div></div>
+    <div class="coach-cell"><div class="coach-v">${seen}</div><div class="coach-l">bank done</div></div>
+    <div class="coach-cell"><div class="coach-v">${dueMn}</div><div class="coach-l">cards due</div></div>
+  </div>
+  ${weakHtml}
+  <button class="btn-secondary" onclick="startCoachSession()">Start coach session</button>`;
+}
+function getTopicStats(){ try{return JSON.parse(localStorage.getItem('are_topic_stats')||'{}');}catch(e){return {};} }
+function weakTopics(limit){
+  const ts=getTopicStats();
+  return Object.keys(ts).map(topic=>({topic,answered:ts[topic].answered||0,correct:ts[topic].correct||0,last:ts[topic].last||0}))
+    .filter(x=>x.answered>=2)
+    .sort((a,b)=>(a.correct/a.answered)-(b.correct/b.answered) || b.answered-a.answered)
+    .slice(0,limit||5);
+}
+function recommendPlan(){
+  const s=getStats();
+  let best=null;
+  DIV_ORDER.forEach(d=>{
+    const o=s[d]||{answered:0,correct:0};
+    const pct=o.answered?o.correct/o.answered:0;
+    const score=(o.answered?pct:.35) - Math.min(o.answered,25)/200;
+    if(!best || score<best.score) best={div:d,score,pct,answered:o.answered};
+  });
+  const weak=weakTopics(1)[0];
+  if(weak) return {div:best.div,title:`Target ${best.div} and ${weak.topic}`,sub:'Your next set will lean into the concepts that have been costing points.'};
+  return {div:best.div,title:`Build a base in ${best.div}`,sub:'This division needs the next clean rep based on your current history.'};
+}
+function startCoachSession(){
+  const rec=recommendPlan();
+  setMode('practice');
+  setQC(10,document.querySelector('.qc-btn:nth-child(3)'));
+  if(rec.div){ pickDiv(rec.div); }
+  startSession();
+}
+function setMode(mode,el){
+  selMode=mode==='exam'?'exam':'practice';
+  document.querySelectorAll('.mode-btn').forEach(b=>{ const on=b.dataset.mode===selMode; b.classList.toggle('selected',on); b.setAttribute('aria-pressed',on?'true':'false'); });
+  const hint=document.getElementById('modeHint');
+  if(hint) hint.textContent=selMode==='exam'?'Exam mode hides feedback, tracks flags, and scores at the end.':'Practice gives explanations after each answer.';
+  updateStartBtn();
+}
+
 function pickDiv(d){
   selDiv=d;
   document.querySelectorAll('.div-card').forEach(c=>{ const on=c.dataset.div===d; c.classList.toggle('selected',on); c.setAttribute('aria-pressed',on?'true':'false'); });
@@ -1009,7 +1139,7 @@ function updateStartBtn(){
     b.innerHTML=`<span>No ${diffActive()?selDiffLabel()+' ':''}questions in this division yet</span>`;
     return;
   }
-  const avail=unseenPool().length;
+  const avail=(selMode==='exam'?candidatePool():unseenPool()).length;
   if(avail===0){
     b.disabled=true;
     b.innerHTML=`<span>All done &mdash; reset the pool to revisit these</span>`;
@@ -1019,7 +1149,7 @@ function updateStartBtn(){
   const n=Math.min(selQC,avail);
   const lvl=diffActive()?` ${selDiffLabel().toLowerCase()}`:'';
   const short=(n<selQC)?` &middot; only ${n} new left`:'';
-  b.innerHTML=`<span>Begin ${n}-question${lvl} session${short}</span><span class="arr">&rarr;</span>`;
+  b.innerHTML=`<span>${selMode==='exam'?'Start timed':'Begin'} ${n}-question${lvl} ${selMode==='exam'?'exam':'session'}${short}</span><span class="arr">&rarr;</span>`;
 }
 
 /* ── Custom mix picker (All Divisions) ──────────────────────── */
@@ -1079,12 +1209,16 @@ function updateAllCard(){
 
 /* ── Weighted question pool ─────────────────────────────────── */
 function buildWeightedPool(pool){
-  const ts=JSON.parse(localStorage.getItem('are_topic_stats')||'{}');
+  const ts=getTopicStats(), now=Date.now();
   return pool.map(q=>{
     const t=ts[q.topic];
     if(!t||t.answered===0) return {q,w:1};
     const acc=t.correct/t.answered;
-    return {q,w:acc<0.5?3:acc<0.7?2:1};
+    const stale=(now-(t.last||0))>1000*60*60*24*3;
+    let w=acc<0.45?5:acc<0.6?4:acc<0.75?2:1;
+    if((t.streak||0)<0) w+=Math.min(3,Math.abs(t.streak));
+    if(stale&&acc<0.75) w+=1;
+    return {q,w};
   });
 }
 function weightedShuffle(weighted){
@@ -1098,14 +1232,16 @@ function weightedShuffle(weighted){
 
 function startSession(){
   if(!selDiv) return;
-  const raw=unseenPool();
+  stopExamTimer();
+  const raw=selMode==='exam'?candidatePool():unseenPool();
   if(!raw.length){ updateStartBtn(); return; }
   const ordered=weightedShuffle(buildWeightedPool(raw));
   const n=Math.min(selQC,ordered.length);
   const qs=composeWithCata(ordered,n);
-  markSeen(qs.map(q=>q.id));
-  session={div:selDiv,divs:sessionDivs(),diffs:[...selDiffs],qs,idx:0,correct:0,missed:[],results:[]};
+  if(selMode!=='exam') markSeen(qs.map(q=>q.id));
+  session={div:selDiv,divs:sessionDivs(),diffs:[...selDiffs],qs,idx:0,correct:0,missed:[],results:[],mode:selMode,answers:qs.map(()=>null),flags:{},graded:false,reviewing:false,secondsLeft:selMode==='exam'?n*EXAM_SEC_PER_Q:0};
   showScreen('question'); renderQ();
+  if(selMode==='exam') startExamTimer();
 }
 /* Which divisions this session draws from (for the score report) */
 function sessionDivs(){
@@ -1126,18 +1262,30 @@ function composeWithCata(ordered,n){
 }
 function restartSame(){
   selDiv=session.div;
-  if(!unseenPool().length){
+  if(selMode!=='exam'&&!unseenPool().length){
     alert('You\u2019ve completed every available question here. Generate more, or use \u201cReset question pool\u201d to revisit them.');
     goSelect(); return;
   }
   startSession();
 }
-function goSelect(){ buildGrid(); renderOverall(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('select'); }
-function confirmExit(){ if(confirm('Exit this session? Your progress on these questions is saved.')) goSelect(); }
+function goSelect(){ stopExamTimer(); buildGrid(); renderOverall(); renderCoach(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('select'); }
+function confirmExit(){ if(confirm(session.mode==='exam'?'Exit this exam? Your unsent answers will be lost.':'Exit this session? Your progress on these questions is saved.')) goSelect(); }
+function startExamTimer(){ stopExamTimer(); updateTimerChip(); examTimer=setInterval(()=>{ session.secondsLeft=Math.max(0,(session.secondsLeft||0)-1); updateTimerChip(); if(session.secondsLeft<=0){ stopExamTimer(); alert('Time is up. Your exam will be scored now.'); showScore(); } },1000); }
+function stopExamTimer(){ if(examTimer){ clearInterval(examTimer); examTimer=null; } const t=document.getElementById('qTimer'); if(t) t.hidden=true; }
+function updateTimerChip(){
+  const t=document.getElementById('qTimer'); if(!t) return;
+  if(session.mode!=='exam'){ t.hidden=true; return; }
+  const s=Math.max(0,session.secondsLeft||0), m=Math.floor(s/60), r=s%60;
+  t.hidden=false; t.textContent=`${m}:${String(r).padStart(2,'0')}`; t.classList.toggle('warn',s<=Math.max(60,session.qs.length*15));
+}
 
 /* ── Render a question ──────────────────────────────────────── */
 const pad=n=>String(n).padStart(2,'0');
 function renderQ(){
+  if(session.mode==='exam'){ renderExamQ(); return; }
+  renderPracticeQ();
+}
+function renderPracticeQ(){
   revealed=false; cataSet=new Set();
   const q=session.qs[session.idx], total=session.qs.length;
   const isCata=q.question_type==='cata';
@@ -1166,6 +1314,33 @@ function renderQ(){
     ?`<button class="btn-primary" id="cataBtn" onclick="submitCata()" disabled><span id="cataBtnLbl">Select ${need} · 0 of ${need} chosen</span></button>`
     :`<div class="foot-hint">Choose an answer to continue</div>`;
 }
+function renderExamQ(){
+  revealed=false;
+  const q=session.qs[session.idx], total=session.qs.length;
+  const isCata=q.question_type==='cata', need=isCata?nCorrect(q):0;
+  const ans=session.answers[session.idx];
+  document.getElementById('qBadge').textContent=q.division;
+  document.getElementById('qProg').textContent=`${pad(session.idx+1)} / ${pad(total)}`;
+  const stepsEl=document.getElementById('qSteps'); if(stepsEl) stepsEl.setAttribute('aria-label',`Question ${session.idx+1} of ${total}`);
+  updateTimerChip(); updateScoreChip(); renderSteps();
+  let optHtml='';
+  q.options.forEach(o=>{
+    const picked=isCata?(Array.isArray(ans)&&ans.includes(o.id)):ans===o.id;
+    optHtml+=`<button class="opt${picked?' sel':''}" id="o_${o.id}" onclick="${isCata?`toggleCata('${o.id}')`:`pickMC('${o.id}')`}">
+      <span class="opt-ltr">${o.id}</span>
+      <span class="opt-main"><span class="opt-txt">${esc(o.text)}</span></span>
+      <span class="opt-mark">${isCata?'<span class="chk"></span>':''}</span>
+    </button>`;
+  });
+  const typeLbl=isCata?`Select ${need} that apply`:'Multiple choice';
+  document.getElementById('qBody').innerHTML=`
+    <div class="q-meta"><span class="q-type${isCata?' q-type-cata':''}">${typeLbl}</span><span class="q-topic">${esc(q.topic)}</span><span class="q-diff d-${qDiff(q)}" style="margin-left:auto">${DIFF_LABEL[qDiff(q)]}</span></div>
+    <h2 class="q-text">${esc(cleanCataPrompt(q.question_text,isCata))}</h2>
+    ${isCata?`<div class="cata-instruct">Choose exactly <b>${need}</b> of the ${q.options.length} options.</div>`:''}
+    <div class="options" id="optList">${optHtml}</div>`;
+  document.querySelector('.q-scroll').scrollTop=0;
+  renderExamFoot();
+}
 /* NCARB states the count, so drop a redundant trailing “select all that apply” from the prompt text */
 function cleanCataPrompt(t,isCata){
   if(!isCata) return t;
@@ -1175,18 +1350,71 @@ function renderSteps(){
   let h='';
   for(let i=0;i<session.qs.length;i++){
     let cls='step';
-    if(i<session.results.length) cls+=session.results[i]?' step-correct':' step-wrong';
+    if(session.mode==='exam'&&!session.graded){
+      if(answeredAt(i)) cls+=' step-answered';
+      if(session.flags&&session.flags[i]) cls+=' step-flagged';
+      if(i===session.idx) cls+=' step-current';
+    }else if(i<session.results.length) cls+=session.results[i]?' step-correct':' step-wrong';
     else if(i===session.idx) cls+=' step-current';
     h+=`<span class="${cls}" aria-hidden="true"></span>`;
   }
   document.getElementById('qSteps').innerHTML=h;
 }
 function updateScoreChip(){
-  document.getElementById('qScore').innerHTML=`<b>${session.correct}</b>&nbsp;correct`;
+  if(session.mode==='exam'&&!session.graded){
+    document.getElementById('qScore').innerHTML=`<b>${answeredCount()}</b>&nbsp;answered`;
+  }else{
+    document.getElementById('qScore').innerHTML=`<b>${session.correct}</b>&nbsp;correct`;
+  }
 }
+function answeredAt(i){
+  const a=session.answers&&session.answers[i];
+  return Array.isArray(a)?a.length>0:!!a;
+}
+function answeredCount(){ return (session.answers||[]).filter((_,i)=>answeredAt(i)).length; }
+function renderExamFoot(){
+  const total=session.qs.length, last=session.idx+1>=total, flagged=session.flags&&session.flags[session.idx];
+  const answered=answeredCount();
+  document.getElementById('qFoot').innerHTML=`<div class="exam-foot">
+    <div class="exam-nav">
+      <button class="mini-btn" onclick="prevExamQ()" ${session.idx===0?'disabled':''}>Previous</button>
+      <button class="mini-btn ${flagged?'on':''}" onclick="toggleFlag()">${flagged?'Flagged':'Flag'}</button>
+      <button class="mini-btn" onclick="${last?'showExamReview()':'nextExamQ()'}">${last?'Review':'Next'}</button>
+    </div>
+    <button class="btn-primary" onclick="showExamReview()"><span>Review ${answered}/${total}</span><span class="arr">&rarr;</span></button>
+  </div>`;
+}
+function prevExamQ(){ if(session.idx>0){ session.idx--; renderQ(); } }
+function nextExamQ(){ if(session.idx+1<session.qs.length){ session.idx++; renderQ(); } else showExamReview(); }
+function toggleFlag(){ session.flags=session.flags||{}; if(session.flags[session.idx]) delete session.flags[session.idx]; else session.flags[session.idx]=1; renderSteps(); renderExamFoot(); }
+function showExamReview(){
+  session.reviewing=true;
+  updateTimerChip(); updateScoreChip(); renderSteps();
+  const total=session.qs.length, answered=answeredCount(), flags=Object.keys(session.flags||{}).length;
+  const items=session.qs.map((q,i)=>`<button class="review-item${answeredAt(i)?' answered':''}${session.flags&&session.flags[i]?' flagged':''}" onclick="session.idx=${i};session.reviewing=false;renderQ()">${i+1}</button>`).join('');
+  document.getElementById('qBody').innerHTML=`<div class="q-meta"><span class="q-type">Exam review</span><span class="q-topic">${esc(examDivLabel(session))}</span></div>
+    <h2 class="q-text">Review before scoring.</h2>
+    <div class="review-meta"><span class="review-pill">${answered}/${total} answered</span><span class="review-pill">${flags} flagged</span><span class="review-pill">${formatSeconds(session.secondsLeft||0)} left</span></div>
+    <div class="review-grid">${items}</div>`;
+  document.getElementById('qFoot').innerHTML=`<div class="exam-foot">
+    <button class="btn-primary" onclick="submitExam()"><span>Submit exam</span><span class="arr">&rarr;</span></button>
+    <button class="btn-secondary" onclick="session.reviewing=false;renderQ()">Return to questions</button>
+  </div>`;
+}
+function submitExam(){
+  const missing=session.qs.length-answeredCount();
+  if(missing && !confirm('Submit with '+missing+' unanswered question'+(missing===1?'':'s')+'?')) return;
+  showScore();
+}
+function formatSeconds(s){ const m=Math.floor(Math.max(0,s)/60), r=Math.max(0,s)%60; return `${m}:${String(r).padStart(2,'0')}`; }
 
 /* ── Answering ──────────────────────────────────────────────── */
 function pickMC(id){
+  if(session.mode==='exam'&&!session.graded){
+    session.answers[session.idx]=id;
+    updateScoreChip(); renderSteps(); renderExamFoot();
+    return;
+  }
   if(revealed) return; revealed=true;
   const q=session.qs[session.idx];
   const correct=q.options.find(o=>o.is_correct);
@@ -1197,6 +1425,18 @@ function pickMC(id){
   revealAll(q,id,null); renderSteps(); updateScoreChip(); showNextBtn();
 }
 function toggleCata(id){
+  if(session.mode==='exam'&&!session.graded){
+    const q=session.qs[session.idx], need=nCorrect(q);
+    let a=Array.isArray(session.answers[session.idx])?[...session.answers[session.idx]]:[];
+    if(a.includes(id)) a=a.filter(x=>x!==id);
+    else{
+      if(a.length>=need){ flashCataFull(need); return; }
+      a.push(id);
+    }
+    session.answers[session.idx]=a;
+    renderQ();
+    return;
+  }
   if(revealed) return;
   const q=session.qs[session.idx], need=nCorrect(q);
   const el=document.getElementById('o_'+id);
@@ -1283,7 +1523,7 @@ function recordExam(){
     id:'ex_'+now.getTime().toString(36),
     ts:now.getTime(),
     dateStr:now.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})+' \u00b7 '+now.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}),
-    div:session.div, divs:session.divs||[session.div], diffs:session.diffs||[],
+    div:session.div, divs:session.divs||[session.div], diffs:session.diffs||[], mode:session.mode||'practice', flags:Object.keys(session.flags||{}).length,
     total:t, correct:c, pct, pass:pct>=PASS_PCT,
     byCat, byTopic, byType, byDiff, missed
   };
@@ -1291,9 +1531,30 @@ function recordExam(){
   return rec;
 }
 function showScore(){
+  if(session.mode==='exam'&&!session.graded) gradeExamSession();
+  stopExamTimer();
   const rec=recordExam();
   document.getElementById('scoreBody').innerHTML=reportHTML(rec,'Session complete');
   showScreen('score');
+}
+function gradeExamSession(){
+  session.correct=0; session.missed=[]; session.results=[];
+  session.qs.forEach((q,i)=>{
+    const a=session.answers[i];
+    let ok=false;
+    if(isCataQ(q)){
+      const correctIds=new Set(q.options.filter(o=>o.is_correct).map(o=>o.id));
+      ok=Array.isArray(a)&&a.length===correctIds.size&&a.every(id=>correctIds.has(id));
+    }else{
+      const c=q.options.find(o=>o.is_correct);
+      ok=!!c&&a===c.id;
+    }
+    session.results[i]=ok;
+    if(ok) session.correct++; else session.missed.push({topic:q.topic,text:trimQ(q.question_text)});
+    updateStats(session.div,ok,q); updateTopicStats(q.topic,ok);
+  });
+  markSeen(session.qs.map(q=>q.id));
+  session.graded=true;
 }
 /* Shared ARE-style report markup, used by the results screen and the history detail */
 function reportHTML(rec,eyebrow){
@@ -1342,7 +1603,7 @@ function reportHTML(rec,eyebrow){
     <div class="score-ring-host">${ringSVG(pct,'lg',true)}
       <div class="sr-center"><div class="sr-pct">${pct}<span class="s">%</span></div><div class="sr-sub">score</div></div></div>
     <div class="exam-stamp ${pass?'is-pass':'is-fail'}">${pass?'PASS':'FAIL'}</div>
-    <div class="score-line">${rec.correct} of ${rec.total} correct \u00b7 ${esc(examDivLabel(rec))}</div>
+    <div class="score-line">${rec.correct} of ${rec.total} correct \u00b7 ${esc(examDivLabel(rec))} \u00b7 ${(rec.mode||'practice')==='exam'?'Exam':'Practice'}</div>
     <div class="score-verd ${verd[1]}">${verd[0]}</div>
     <div class="rep-blocks">${catBlock}${fmtBlock}${diffBlock}<div class="missed-wrap">${missedBlock}</div></div>`;
 }
@@ -1371,7 +1632,7 @@ function renderScores(){
     return `<button class="exam-card" onclick="openExam('${e.id}')">
       <div class="ec-top">
         <span class="ec-pct">${e.pct}<span>%</span></span>
-        <div class="ec-mid"><span class="ec-div">${esc(examDivLabel(e))}</span><span class="ec-date">${esc(e.dateStr)} \u00b7 ${e.correct}/${e.total}</span></div>
+        <div class="ec-mid"><span class="ec-div">${esc(examDivLabel(e))}</span><span class="ec-date">${esc(e.dateStr)} \u00b7 ${e.correct}/${e.total} \u00b7 ${(e.mode||'practice')==='exam'?'Exam':'Practice'}</span></div>
         <span class="ec-verd ${e.pass?'is-pass':'is-fail'}">${e.pass?'PASS':'FAIL'}</span>
       </div>
       <div class="ec-dots">${dots}</div>
@@ -1393,11 +1654,12 @@ function clearExams(){
 
 /* ── Stats ──────────────────────────────────────────────────── */
 function getStats(){try{return JSON.parse(localStorage.getItem('are_stats')||'{}');}catch(e){return {};}}
-function updateStats(div,correct){
+function updateStats(div,correct,qRef){
   const s=getStats();
+  const q=qRef||session.qs[session.idx];
   // For mixed sessions, credit the question's own division
   if(div==='ALL'||div==='MIX'){
-    const q=session.qs[session.idx]; const d=q.division;
+    const d=q.division;
     if(!s[d])s[d]={answered:0,correct:0}; s[d].answered++; if(correct)s[d].correct++;
   }else{
     if(!s[div])s[div]={answered:0,correct:0}; s[div].answered++; if(correct)s[div].correct++;
@@ -1405,22 +1667,25 @@ function updateStats(div,correct){
   localStorage.setItem('are_stats',JSON.stringify(s));
 }
 function updateTopicStats(topic,correct){
-  const ts=JSON.parse(localStorage.getItem('are_topic_stats')||'{}');
-  if(!ts[topic])ts[topic]={answered:0,correct:0};
+  const ts=getTopicStats();
+  if(!ts[topic])ts[topic]={answered:0,correct:0,streak:0,last:0};
   ts[topic].answered++; if(correct)ts[topic].correct++;
+  ts[topic].streak=correct?Math.max(0,ts[topic].streak||0)+1:Math.min(0,ts[topic].streak||0)-1;
+  ts[topic].last=Date.now();
   localStorage.setItem('are_topic_stats',JSON.stringify(ts));
+  renderCoach();
 }
 function resetProgress(){
   if(!confirm('Reset all mastery, topic progress, and your seen-question history? This cannot be undone.')) return;
   localStorage.removeItem('are_stats'); localStorage.removeItem('are_topic_stats'); localStorage.removeItem('are_seen');
-  buildGrid(); renderOverall(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderOverall(); renderCoach(); refreshPoolLink(); updateStartBtn();
 }
 function resetPool(){
   const n=seenCount();
   if(!n){ alert('You haven\u2019t completed any questions yet \u2014 nothing to reset.'); return; }
   if(!confirm('Make all '+n+' completed question'+(n===1?'':'s')+' available again? Your mastery stats stay intact.')) return;
   localStorage.removeItem('are_seen');
-  refreshPoolLink(); updateStartBtn();
+  renderCoach(); refreshPoolLink(); updateStartBtn();
 }
 function refreshPoolLink(){
   const l=document.getElementById('resetPoolLink'); if(!l) return;
@@ -1452,6 +1717,28 @@ function downloadFile(name,text,type){
   const a=document.createElement('a'); a.href=url; a.download=name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+const PROGRESS_KEYS=['are_stats','are_topic_stats','are_seen','are_exams','are_generated','are_synonyms','are_mnemonics','are_mn_review'];
+function exportProgress(){
+  const data={app:'ARE 5.0 Practice',version:2,exportedAt:new Date().toISOString(),items:{}};
+  PROGRESS_KEYS.forEach(k=>{ const v=localStorage.getItem(k); if(v!=null) data.items[k]=v; });
+  downloadFile('are-progress.json',JSON.stringify(data,null,2),'application/json');
+}
+function importProgressFile(input){
+  const file=input.files&&input.files[0]; input.value='';
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const data=JSON.parse(reader.result);
+      const items=data&&data.items;
+      if(!items||typeof items!=='object') throw new Error('That file does not look like ARE progress.');
+      PROGRESS_KEYS.forEach(k=>{ if(Object.prototype.hasOwnProperty.call(items,k)) localStorage.setItem(k,String(items[k])); });
+      GEN=getGenerated(); rebuildQBANK(); buildGrid(); renderOverall(); renderCoach(); refreshClearLink(); refreshPoolLink(); renderScores();
+      alert('Progress imported.');
+    }catch(e){ alert('Could not import progress.\n\n'+e.message); }
+  };
+  reader.readAsText(file);
 }
 async function exportSite(btn){
   const targets=[...document.querySelectorAll('.js-export')];
@@ -1499,7 +1786,7 @@ function flashExport(msg){
 function clearGenerated(){
   if(!GEN.length) return;
   if(!confirm('Remove all '+GEN.length+' AI-generated questions? Your original bank stays intact.')) return;
-  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderOverall(); refreshClearLink();
+  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderOverall(); renderCoach(); refreshClearLink();
 }
 
 let genState=null;
@@ -1678,7 +1965,7 @@ function finishGen(){
   const added=genState?genState.added:0;
   const divs=genState?genState.divs:[];
   if(genState) genState.running=false;
-  buildGrid(); renderOverall(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderOverall(); renderCoach(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
   document.getElementById('genStatus').textContent=added>0
     ? `Added ${added} new question${added===1?'':'s'} across ${divs.join(', ')}.`
     : 'Could not generate questions just now \u2014 please try again in a moment.';
@@ -1970,7 +2257,7 @@ function renderSyn(){
 
 /* Mnemonics */
 let mnFilter='ALL', mnEditId=null;
-const MN_DIVS=['ALL'].concat(DIV_ORDER);
+const MN_DIVS=['DUE','ALL'].concat(DIV_ORDER);
 function setMnFilter(d){ mnFilter=d; renderMn(); }
 function mnForm(which){ mnEditId=which; renderMn(); window.scrollTo({top:0,behavior:'smooth'}); setTimeout(()=>{const f=document.getElementById('mnF_prompt'); if(f)f.focus();},80); }
 function mnCancel(){ mnEditId=null; renderMn(); }
@@ -1986,6 +2273,17 @@ function mnSave(){
   saveMn(list); mnEditId=null; renderMn();
 }
 function mnDelete(id){ if(!confirm('Delete this card?'))return; saveMn(getMn().filter(x=>x.id!==id)); mnEditId=null; renderMn(); }
+function getMnReview(){ try{return JSON.parse(localStorage.getItem('are_mn_review')||'{}');}catch(e){return {};} }
+function saveMnReview(r){ try{localStorage.setItem('are_mn_review',JSON.stringify(r));}catch(e){} }
+function isMnDue(id){ const r=getMnReview()[id]; return !r || (r.due||0)<=Date.now(); }
+function dueMnemonicCount(){ return getMn().filter(m=>isMnDue(m.id)).length; }
+function mnGrade(id,got){
+  const r=getMnReview(), cur=r[id]||{box:0};
+  const box=got?Math.min(5,(cur.box||0)+1):0;
+  const days=got?[1,2,4,8,16,30][box]||30:0.25;
+  r[id]={box,due:Date.now()+days*24*60*60*1000,last:Date.now()};
+  saveMnReview(r); renderMn(); renderCoach();
+}
 function mnFormHTML(which,list){
   const isNew=which==='new';
   const e=isNew?{prompt:'',mnemonic:'',division:'All'}:(list.find(x=>x.id===which)||{prompt:'',mnemonic:'',division:'All'});
@@ -2006,28 +2304,31 @@ function mnFormHTML(which,list){
   </div>`;
 }
 function renderMn(){
-  document.getElementById('mnFilter').innerHTML=MN_DIVS.map(d=>`<button class="filter-chip${mnFilter===d?' on':''}" onclick="setMnFilter('${d}')">${d==='ALL'?'All':d}</button>`).join('');
+  const due=dueMnemonicCount();
+  document.getElementById('mnFilter').innerHTML=MN_DIVS.map(d=>`<button class="filter-chip${mnFilter===d?' on':''}" onclick="setMnFilter('${d}')">${d==='DUE'?'Due '+due:(d==='ALL'?'All':d)}</button>`).join('');
   const list=getMn();
   document.getElementById('mnFormHost').innerHTML = mnEditId ? mnFormHTML(mnEditId,list) : '';
   let items=list.slice();
-  if(mnFilter!=='ALL') items=items.filter(m=>m.division===mnFilter || m.division==='All');
+  if(mnFilter==='DUE') items=items.filter(m=>isMnDue(m.id));
+  else if(mnFilter!=='ALL') items=items.filter(m=>m.division===mnFilter || m.division==='All');
   const host=document.getElementById('mnList');
-  if(!items.length){ host.innerHTML=`<div class="empty-note">${mnFilter==='ALL'?'No cards yet \u2014 tap + Add.':'No cards in '+mnFilter+' yet.'}</div>`; return; }
+  if(!items.length){ host.innerHTML=`<div class="empty-note">${mnFilter==='DUE'?'No cards due right now.':(mnFilter==='ALL'?'No cards yet \u2014 tap + Add.':'No cards in '+mnFilter+' yet.')}</div>`; return; }
   host.innerHTML=items.map(m=>{
     const badge=(m.division&&m.division!=='All')?m.division:'All';
-    return `<div class="mn-card" data-id="${m.id}">
+    const due=isMnDue(m.id);
+    return `<div class="mn-card${due?' due':''}" data-id="${m.id}">
       <button class="mn-edit" onclick="event.stopPropagation(); mnForm('${m.id}')" aria-label="Edit"><svg viewBox="0 0 24 24"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M13.5 6.5l3 3"/></svg></button>
       <div class="mn-flip" onclick="flipMn('${m.id}')">
         <div class="mn-face mn-front">
-          <span class="mn-badge">${badge}</span>
+          <span class="mn-badge">${due?'Due':badge}</span>
           <div class="mn-prompt">${esc(m.prompt)}</div>
           <div class="mn-hint">Tap to reveal</div>
         </div>
         <div class="mn-face mn-back">
           <div class="mn-answer">${esc(m.mnemonic)}</div>
           <div class="mn-acts">
-            <button class="mn-act got" onclick="event.stopPropagation(); flipMn('${m.id}')">Got it &#10003;</button>
-            <button class="mn-act learn" onclick="event.stopPropagation(); flipMn('${m.id}')">Still learning</button>
+            <button class="mn-act got" onclick="event.stopPropagation(); mnGrade('${m.id}',true)">Got it &#10003;</button>
+            <button class="mn-act learn" onclick="event.stopPropagation(); mnGrade('${m.id}',false)">Still learning</button>
           </div>
         </div>
       </div>
@@ -2048,7 +2349,7 @@ window.addEventListener('resize',()=>{ if(document.getElementById('mnemonics').c
 const NAV_SCREENS=['select','scores','synonyms','mnemonics'];
 let lastDialogFocus=null;
 function initA11y(){
-  document.querySelectorAll('.qc-btn,.diff-btn,.gen-diff-btn,.gen-count-btn').forEach(b=>b.setAttribute('aria-pressed',(b.classList.contains('selected')||b.classList.contains('on'))?'true':'false'));
+  document.querySelectorAll('.qc-btn,.diff-btn,.gen-diff-btn,.gen-count-btn,.mode-btn').forEach(b=>b.setAttribute('aria-pressed',(b.classList.contains('selected')||b.classList.contains('on'))?'true':'false'));
   document.querySelectorAll('.gen-overlay').forEach(o=>{ if(!o.classList.contains('open')) o.setAttribute('aria-hidden','true'); });
 }
 function focusables(root){ return [...root.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled&&el.offsetParent!==null); }
