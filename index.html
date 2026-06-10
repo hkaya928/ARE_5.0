@@ -617,12 +617,40 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .profile-mini{min-height:34px; border:1px solid var(--line-2); background:var(--card); border-radius:var(--r-sm); font-size:.75rem; font-weight:700}
 .assistant-card{display:flex; align-items:flex-start; gap:13px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:14px 15px; box-shadow:var(--shadow-card)}
 .assistant-avatar{width:44px; height:44px; border-radius:14px; font-size:1.35rem; background:var(--assistant-bg,var(--accent-soft)); color:var(--assistant-fg,var(--accent)); border-color:var(--assistant-line,var(--accent-line))}
+.assistant-avatar span{position:relative; z-index:1; line-height:1}
+.assistant-avatar.assistant-orb{border-radius:50%; box-shadow:inset 0 -12px 18px rgba(27,26,22,.08)}
+.assistant-avatar.assistant-gem{border-radius:12px; transform:rotate(45deg)}
+.assistant-avatar.assistant-gem span{transform:rotate(-45deg)}
+.assistant-avatar.assistant-pin{border-radius:16px 16px 16px 5px}
 .assistant-main{flex:1; min-width:0}
 .assistant-name{font-size:.92rem; font-weight:800; letter-spacing:-.01em}
 .assistant-copy{font-size:.86rem; line-height:1.45; color:var(--ink-soft); margin-top:4px}
 .assistant-edit{margin-top:9px; background:none; border:none; font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:0}
 .avatar-row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.avatar-row .wide{grid-column:1/-1}
 .assistant-live{display:flex; align-items:center; gap:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-md); padding:12px; margin:13px 0}
+.profile-modal{max-width:560px; padding:24px 22px 22px}
+.profile-card{position:relative; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:var(--card); box-shadow:var(--shadow-card); margin:18px 0}
+.profile-banner{height:132px; background:linear-gradient(135deg,#d9c7a0,#e9dfcc 45%,#cad7c6); background-size:cover; background-position:center; border-bottom:1px solid var(--line)}
+.profile-banner.has-img{background-color:var(--paper-2)}
+.profile-card-body{position:relative; padding:0 18px 18px}
+.profile-card-avatar{position:relative; width:92px; height:92px; margin-top:-40px; border:7px solid var(--card); border-radius:28px; overflow:hidden; background:var(--accent-soft); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.35rem; font-weight:900; box-shadow:0 10px 24px -18px rgba(27,26,22,.5)}
+.profile-card-avatar img{width:100%; height:100%; object-fit:cover; display:block}
+.profile-status-dot{position:absolute; right:2px; bottom:3px; width:24px; height:24px; border:5px solid var(--card); border-radius:50%; background:var(--correct)}
+.profile-card-name{margin-top:8px; font-size:1.55rem; line-height:1; font-weight:900; letter-spacing:-.035em}
+.profile-card-real{font-family:var(--mono); color:var(--muted); font-size:.7rem; letter-spacing:.04em; margin-top:6px}
+.profile-badge-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px}
+.profile-badge{display:inline-flex; align-items:center; gap:6px; min-height:30px; border:1px solid var(--line); background:var(--paper-2); border-radius:99px; padding:0 10px; font-size:.78rem; color:var(--ink-soft)}
+.profile-badge i{width:9px; height:9px; border-radius:50%; background:var(--accent); display:inline-block}
+.profile-rank{display:inline-flex; align-items:center; gap:7px; margin-top:13px; font-family:var(--mono); color:var(--accent); font-size:.64rem; letter-spacing:.11em; text-transform:uppercase}
+.profile-rank:before{content:""; width:18px; height:18px; border-radius:6px; background:var(--accent-soft); border:1px solid var(--accent-line)}
+.profile-bio{margin-top:13px; color:var(--ink-soft); line-height:1.45; font-size:.92rem}
+.profile-status-pill{margin-top:14px; display:inline-flex; max-width:100%; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:12px 15px; color:var(--ink-soft); line-height:1.35}
+.profile-editor{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.profile-editor .wide{grid-column:1/-1}
+.profile-media-actions{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:12px 0 16px}
+.profile-help{font-size:.76rem; color:var(--muted); line-height:1.45; margin:-2px 0 10px}
+.profile-section-title{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:18px 0 10px}
 
 /* ── Gamification ──────────────────────────────────────────── */
 .game-panel{margin:0 0 30px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:14px; box-shadow:var(--shadow-card)}
@@ -709,6 +737,9 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   .brand{padding-right:0}
   .profile-chip{position:static; margin:0 0 20px auto}
   .profile-grid{grid-template-columns:1fr}
+  .profile-editor{grid-template-columns:1fr}
+  .profile-card-avatar{width:84px; height:84px}
+  .profile-banner{height:116px}
   .avatar-row{grid-template-columns:1fr}
   .game-shell,.game-hero{grid-template-columns:1fr}
   .game-creature{min-height:118px}
@@ -957,56 +988,94 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 
 <!-- PROFILE / ASSISTANT -->
 <div class="gen-overlay" id="profileOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="profileTitle" onclick="if(event.target===this)closeProfile()">
-  <div class="gen-modal">
+  <div class="gen-modal profile-modal">
     <button class="gen-x" onclick="closeProfile()" aria-label="Close">&times;</button>
     <div class="gen-eyebrow">Profile</div>
-    <h3 class="gen-title" id="profileTitle">Your ARE setup</h3>
-    <p class="gen-sub">Add your name, photo, and design the coach that shows up on your main page.</p>
-    <div class="profile-grid">
-      <div class="profile-preview">
-        <div class="profile-avatar" id="profilePhotoPreview"></div>
-        <div class="avatar-actions">
-          <button class="profile-mini" onclick="document.getElementById('profilePhotoInput').click()">Choose photo</button>
-          <button class="profile-mini" onclick="removeProfilePhoto()">Remove</button>
-          <input class="profile-file" id="profilePhotoInput" type="file" accept="image/*" onchange="readProfilePhoto(this)">
-        </div>
+    <h3 class="gen-title" id="profileTitle">Study identity</h3>
+    <p class="gen-sub">Make it feel like your own corner of the studio: banner, avatar, rank, roles, and coach.</p>
+    <div class="profile-card" id="profileCardPreview"></div>
+    <div class="profile-media-actions">
+      <button class="profile-mini" onclick="document.getElementById('profileBannerInput').click()">Choose banner</button>
+      <button class="profile-mini" onclick="document.getElementById('profilePhotoInput').click()">Choose avatar</button>
+      <input class="profile-file" id="profileBannerInput" type="file" accept="image/*" onchange="readProfileBanner(this)">
+      <input class="profile-file" id="profilePhotoInput" type="file" accept="image/*" onchange="readProfilePhoto(this)">
+    </div>
+    <div class="profile-editor">
+      <div>
+        <label class="fld-lbl">Display name</label>
+        <input class="fld" id="profileName" placeholder="e.g. Hasan" autocomplete="name">
       </div>
       <div>
-        <label class="fld-lbl">Your name</label>
-        <input class="fld" id="profileName" placeholder="e.g. Hasan" autocomplete="name">
-        <label class="fld-lbl">Study title</label>
-        <input class="fld" id="profileTitleInput" placeholder="e.g. ARE candidate" autocomplete="off">
-        <div class="assistant-live" id="assistantPreview"></div>
-        <div class="avatar-row">
-          <div>
-            <label class="fld-lbl">Assistant name</label>
-            <input class="fld" id="assistantName" placeholder="e.g. Studio">
-          </div>
-          <div>
-            <label class="fld-lbl">Avatar mark</label>
-            <input class="fld" id="assistantEmoji" maxlength="2" placeholder="◆">
-          </div>
-        </div>
-        <div class="avatar-row">
-          <div>
-            <label class="fld-lbl">Vibe</label>
-            <select class="fld" id="assistantVibe">
-              <option value="calm">Calm coach</option>
-              <option value="direct">Direct mentor</option>
-              <option value="hype">Hype partner</option>
-              <option value="studio">Studio critic</option>
-            </select>
-          </div>
-          <div>
-            <label class="fld-lbl">Color</label>
-            <input class="fld" id="assistantColor" type="color" value="#5b86c5">
-          </div>
-        </div>
-        <div class="form-actions">
-          <button class="btn-save" onclick="saveProfileForm()">Save</button>
-          <button class="btn-cancel" onclick="closeProfile()">Cancel</button>
-        </div>
+        <label class="fld-lbl">Handle</label>
+        <input class="fld" id="profileHandle" placeholder="e.g. hasan119" autocomplete="off">
       </div>
+      <div>
+        <label class="fld-lbl">Real name</label>
+        <input class="fld" id="profileRealName" placeholder="e.g. Hasan" autocomplete="off">
+      </div>
+      <div>
+        <label class="fld-lbl">User rank</label>
+        <input class="fld" id="profileTitleInput" placeholder="e.g. ARE Candidate" autocomplete="off">
+      </div>
+      <div class="wide">
+        <label class="fld-lbl">Status</label>
+        <input class="fld" id="profileStatus" placeholder="e.g. Ready to roll!" autocomplete="off">
+      </div>
+      <div class="wide">
+        <label class="fld-lbl">Bio</label>
+        <textarea class="fld" id="profileBio" placeholder="e.g. Mirror neurons in overdrive."></textarea>
+      </div>
+      <div class="wide">
+        <label class="fld-lbl">Roles</label>
+        <input class="fld" id="profileRoles" placeholder="Billing Support, Guide, Basic Member" autocomplete="off">
+        <div class="profile-help">Separate roles with commas. These appear as small chips on your profile card.</div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="removeProfileBanner()">Remove banner</button>
+      <button class="btn-cancel" onclick="removeProfilePhoto()">Remove avatar</button>
+    </div>
+    <div class="profile-section-title">AI assistant</div>
+    <div class="assistant-live" id="assistantPreview"></div>
+    <div class="avatar-row">
+      <div>
+        <label class="fld-lbl">Assistant name</label>
+        <input class="fld" id="assistantName" placeholder="e.g. Studio">
+      </div>
+      <div>
+        <label class="fld-lbl">Avatar mark</label>
+        <input class="fld" id="assistantEmoji" maxlength="2" placeholder="◆">
+      </div>
+    </div>
+    <div class="avatar-row">
+      <div>
+        <label class="fld-lbl">Vibe</label>
+        <select class="fld" id="assistantVibe">
+          <option value="calm">Calm coach</option>
+          <option value="direct">Direct mentor</option>
+          <option value="hype">Hype partner</option>
+          <option value="studio">Studio critic</option>
+        </select>
+      </div>
+      <div>
+        <label class="fld-lbl">Color</label>
+        <input class="fld" id="assistantColor" type="color" value="#5b86c5">
+      </div>
+    </div>
+    <div class="avatar-row">
+      <div class="wide">
+        <label class="fld-lbl">Avatar shape</label>
+        <select class="fld" id="assistantShape">
+          <option value="badge">Studio badge</option>
+          <option value="orb">Soft orb</option>
+          <option value="gem">Rotated gem</option>
+          <option value="pin">Corner pin</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-save" onclick="saveProfileForm()">Save</button>
+      <button class="btn-cancel" onclick="closeProfile()">Cancel</button>
     </div>
   </div>
 </div>
@@ -1130,6 +1199,7 @@ let revealed=false, cataSet=new Set();
 let examTimer=null;
 const PROFILE_KEY='are_profile';
 let profilePhotoDraft='';
+let profileBannerDraft='';
 const GAME_KEY='are_gamification';
 const GAME_STAGES=[
   {name:'Blueprint',xp:0,need:'Begin the set'},
@@ -1272,7 +1342,7 @@ function renderCoach(){
 }
 
 function defaultProfile(){
-  return {name:'',title:'ARE candidate',photo:'',assistantName:'Studio',assistantEmoji:'◆',assistantColor:'#5b86c5',assistantVibe:'calm'};
+  return {name:'',realName:'',handle:'',title:'ARE Candidate',rank:'ARE Candidate',status:'Ready to study.',bio:'',roles:['ARE Candidate','Self Study'],photo:'',banner:'',assistantName:'Studio',assistantEmoji:'◆',assistantColor:'#5b86c5',assistantVibe:'calm',assistantShape:'badge'};
 }
 function cleanHex(v){
   v=String(v||'').trim();
@@ -1281,12 +1351,22 @@ function cleanHex(v){
 function cleanProfile(raw){
   const d=defaultProfile(), p={...d,...(raw||{})};
   p.name=String(p.name||'').trim().slice(0,48);
-  p.title=String(p.title||d.title).trim().slice(0,48)||d.title;
+  p.realName=String(p.realName||'').trim().slice(0,48);
+  p.handle=String(p.handle||'').trim().replace(/^@/,'').slice(0,32);
+  p.rank=String(p.rank||p.title||d.rank).trim().slice(0,48)||d.rank;
+  p.title=p.rank;
+  p.status=String(p.status||d.status).trim().slice(0,70)||d.status;
+  p.bio=String(p.bio||'').trim().slice(0,140);
+  if(Array.isArray(p.roles)) p.roles=p.roles.map(r=>String(r||'').trim()).filter(Boolean).slice(0,8);
+  else p.roles=String(p.roles||'').split(',').map(r=>r.trim()).filter(Boolean).slice(0,8);
+  if(!p.roles.length) p.roles=[...d.roles];
   p.photo=String(p.photo||'');
+  p.banner=String(p.banner||'');
   p.assistantName=String(p.assistantName||d.assistantName).trim().slice(0,32)||d.assistantName;
   p.assistantEmoji=String(p.assistantEmoji||d.assistantEmoji).trim().slice(0,2)||d.assistantEmoji;
   p.assistantColor=cleanHex(p.assistantColor);
   p.assistantVibe=['calm','direct','hype','studio'].includes(p.assistantVibe)?p.assistantVibe:d.assistantVibe;
+  p.assistantShape=['badge','orb','gem','pin'].includes(p.assistantShape)?p.assistantShape:d.assistantShape;
   return p;
 }
 function getProfile(){
@@ -1304,6 +1384,15 @@ function profileInitials(name){
   if(!parts.length) return 'YOU';
   return (parts[0][0]+(parts[1]?parts[1][0]:'')).toUpperCase();
 }
+function profileHandleText(profile){
+  const p=cleanProfile(profile);
+  if(p.handle) return p.handle;
+  const fromName=String(p.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,24);
+  return fromName||'arecandidate';
+}
+function roleColor(i){
+  return ['#b65ad8','#2cc978','#2f87b8','#3da4e8','#c9953a','#7d83d4','#5f9f76','#d96f5b'][i%8];
+}
 function assistantStyle(color){
   const hex=cleanHex(color);
   const n=parseInt(hex.slice(1),16);
@@ -1318,7 +1407,25 @@ function profileAvatarHTML(profile,cls){
 }
 function assistantAvatarHTML(profile){
   const p=cleanProfile(profile);
-  return `<span class="assistant-avatar" style="${assistantStyle(p.assistantColor)}">${esc(p.assistantEmoji)}</span>`;
+  return `<span class="assistant-avatar assistant-${p.assistantShape}" style="${assistantStyle(p.assistantColor)}"><span>${esc(p.assistantEmoji)}</span></span>`;
+}
+function profileCardHTML(profile){
+  const p=cleanProfile(profile);
+  const handle=profileHandleText(p);
+  const bannerStyle=p.banner?` style="background-image:url('${esc(p.banner)}')"`:'';
+  const avatar=p.photo?`<img src="${esc(p.photo)}" alt="">`:esc(profileInitials(p.name));
+  const realLine=p.realName?`${esc(p.realName)} · @${esc(handle)}`:`@${esc(handle)}`;
+  const roles=p.roles.map((r,i)=>`<span class="profile-badge"><i style="background:${roleColor(i)}"></i>${esc(r)}</span>`).join('');
+  return `<div class="profile-banner${p.banner?' has-img':''}"${bannerStyle}></div>
+    <div class="profile-card-body">
+      <div class="profile-card-avatar">${avatar}<span class="profile-status-dot"></span></div>
+      <div class="profile-status-pill">${esc(p.status)}</div>
+      <div class="profile-card-name">${esc(p.name||'Your Name')}</div>
+      <div class="profile-card-real">${realLine}</div>
+      <div class="profile-rank">${esc(p.rank)}</div>
+      ${p.bio?`<div class="profile-bio">${esc(p.bio)}</div>`:''}
+      <div class="profile-badge-row">${roles}</div>
+    </div>`;
 }
 function assistantMessage(profile,rec,weak,readiness,total){
   const p=cleanProfile(profile);
@@ -1365,7 +1472,7 @@ function renderProfile(){
   chip.innerHTML=`${profileAvatarHTML(p,'profile-avatar')}
     <span class="profile-chip-main">
       <span class="profile-chip-name">${esc(hasName?p.name:'Set profile')}</span>
-      <span class="profile-chip-sub">${esc(hasName?p.title:'Photo & coach')}</span>
+      <span class="profile-chip-sub">${esc(hasName?p.rank:'Photo & coach')}</span>
     </span>`;
   chip.setAttribute('aria-label',hasName?'Edit profile for '+p.name:'Create profile');
 }
@@ -1376,19 +1483,25 @@ function profileFormValue(id){
 function draftProfileFromForm(){
   return cleanProfile({
     name:profileFormValue('profileName'),
+    realName:profileFormValue('profileRealName'),
+    handle:profileFormValue('profileHandle'),
     title:profileFormValue('profileTitleInput'),
+    rank:profileFormValue('profileTitleInput'),
+    status:profileFormValue('profileStatus'),
+    bio:profileFormValue('profileBio'),
+    roles:profileFormValue('profileRoles'),
     photo:profilePhotoDraft,
+    banner:profileBannerDraft,
     assistantName:profileFormValue('assistantName'),
     assistantEmoji:profileFormValue('assistantEmoji'),
     assistantColor:profileFormValue('assistantColor'),
-    assistantVibe:profileFormValue('assistantVibe')
+    assistantVibe:profileFormValue('assistantVibe'),
+    assistantShape:profileFormValue('assistantShape')
   });
 }
 function renderProfilePhotoPreview(profile){
-  const el=document.getElementById('profilePhotoPreview'); if(!el) return;
-  const p=cleanProfile(profile);
-  if(p.photo) el.innerHTML=`<img src="${esc(p.photo)}" alt="">`;
-  else { el.innerHTML=''; el.textContent=profileInitials(p.name); }
+  const el=document.getElementById('profileCardPreview'); if(!el) return;
+  el.innerHTML=profileCardHTML(profile);
 }
 function updateAssistantPreview(){
   const host=document.getElementById('assistantPreview'); if(!host) return;
@@ -1401,7 +1514,7 @@ function updateAssistantPreview(){
     </div>`;
 }
 function initProfileFormEvents(){
-  ['profileName','profileTitleInput','assistantName','assistantEmoji','assistantVibe','assistantColor'].forEach(id=>{
+  ['profileName','profileHandle','profileRealName','profileTitleInput','profileStatus','profileBio','profileRoles','assistantName','assistantEmoji','assistantVibe','assistantColor','assistantShape'].forEach(id=>{
     const el=document.getElementById(id);
     if(el&&el.dataset.profileBound!=='1'){
       el.addEventListener('input',updateAssistantPreview);
@@ -1414,12 +1527,19 @@ function populateProfileForm(){
   const p=getProfile();
   const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.value=v; };
   profilePhotoDraft=p.photo||'';
+  profileBannerDraft=p.banner||'';
   set('profileName',p.name);
-  set('profileTitleInput',p.title);
+  set('profileHandle',p.handle);
+  set('profileRealName',p.realName);
+  set('profileTitleInput',p.rank);
+  set('profileStatus',p.status);
+  set('profileBio',p.bio);
+  set('profileRoles',p.roles.join(', '));
   set('assistantName',p.assistantName);
   set('assistantEmoji',p.assistantEmoji);
   set('assistantVibe',p.assistantVibe);
   set('assistantColor',p.assistantColor);
+  set('assistantShape',p.assistantShape);
   initProfileFormEvents();
   updateAssistantPreview();
 }
@@ -1436,6 +1556,10 @@ function removeProfilePhoto(){
   profilePhotoDraft='';
   updateAssistantPreview();
 }
+function removeProfileBanner(){
+  profileBannerDraft='';
+  updateAssistantPreview();
+}
 function readProfilePhoto(input){
   const file=input.files&&input.files[0];
   input.value='';
@@ -1449,18 +1573,37 @@ function readProfilePhoto(input){
   };
   reader.readAsDataURL(file);
 }
+function readProfileBanner(input){
+  const file=input.files&&input.files[0];
+  input.value='';
+  if(!file) return;
+  if(file.type&&!/^image\//.test(file.type)){ alert('Choose an image file.'); return; }
+  const reader=new FileReader();
+  reader.onerror=()=>alert('Could not read that banner.');
+  reader.onload=()=>{
+    resizeProfileBanner(reader.result).then(data=>{ profileBannerDraft=data; updateAssistantPreview(); })
+      .catch(()=>{ profileBannerDraft=String(reader.result||''); updateAssistantPreview(); });
+  };
+  reader.readAsDataURL(file);
+}
 function resizeProfilePhoto(src){
+  return resizeProfileImage(src,256,256,.84);
+}
+function resizeProfileBanner(src){
+  return resizeProfileImage(src,720,260,.82);
+}
+function resizeProfileImage(src,targetW,targetH,quality){
   return new Promise((resolve,reject)=>{
     const img=new Image();
     img.onload=()=>{
-      const size=256;
-      const side=Math.min(img.width,img.height);
-      const sx=(img.width-side)/2, sy=(img.height-side)/2;
+      const scale=Math.max(targetW/img.width,targetH/img.height);
+      const sw=targetW/scale, sh=targetH/scale;
+      const sx=(img.width-sw)/2, sy=(img.height-sh)/2;
       const canvas=document.createElement('canvas');
-      canvas.width=size; canvas.height=size;
+      canvas.width=targetW; canvas.height=targetH;
       const ctx=canvas.getContext('2d');
-      ctx.drawImage(img,sx,sy,side,side,0,0,size,size);
-      resolve(canvas.toDataURL('image/jpeg',.84));
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,targetW,targetH);
+      resolve(canvas.toDataURL('image/jpeg',quality||.84));
     };
     img.onerror=reject;
     img.src=src;
