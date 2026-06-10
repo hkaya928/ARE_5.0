@@ -623,11 +623,98 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .assistant-edit{margin-top:9px; background:none; border:none; font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:0}
 .avatar-row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
 .assistant-live{display:flex; align-items:center; gap:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-md); padding:12px; margin:13px 0}
+
+/* ── Gamification ──────────────────────────────────────────── */
+.game-panel{margin:0 0 30px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:14px; box-shadow:var(--shadow-card)}
+.game-shell{display:grid; grid-template-columns:112px 1fr; gap:14px; align-items:center}
+.game-creature{position:relative; min-height:116px; display:flex; align-items:center; justify-content:center; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden}
+.game-creature svg{width:102px; height:102px; display:block}
+.game-creature.mood-pumped{border-color:var(--accent-line); box-shadow:0 0 0 1px var(--accent-line), 0 14px 30px -24px var(--accent)}
+.game-creature.mood-droopy{filter:saturate(.72)}
+.game-creature.mood-damaged svg{filter:grayscale(.18)}
+.game-crack{position:absolute; inset:0; pointer-events:none; opacity:0}
+.game-creature.mood-damaged .game-crack{opacity:1; background:linear-gradient(135deg,transparent 42%,rgba(190,67,57,.45) 43%,transparent 45%)}
+.game-info{min-width:0}
+.game-kicker{font-family:var(--mono); font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:7px}
+.game-title{display:flex; align-items:center; gap:8px; font-size:1.08rem; font-weight:800; letter-spacing:-.015em}
+.game-stage-pill{font-family:var(--mono); font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:99px; padding:5px 8px; white-space:nowrap}
+.game-sub{font-size:.84rem; color:var(--ink-soft); line-height:1.45; margin-top:5px}
+.game-meter{height:8px; background:var(--paper-2); border:1px solid var(--line); border-radius:99px; overflow:hidden; margin-top:10px}
+.game-meter span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),#7a9d5f); transition:width .4s ease}
+.game-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:11px}
+.game-stat{background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-sm); padding:8px 9px}
+.game-stat b{display:block; font-family:var(--mono); font-size:1rem; letter-spacing:-.03em}
+.game-stat span{display:block; font-family:var(--mono); font-size:.52rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+.game-actions{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:11px}
+.game-actions .mini-btn{min-height:38px; font-size:.78rem}
+.game-actions .mini-btn.locked{opacity:.55}
+.game-dashboard{display:flex; flex-direction:column; gap:14px}
+.game-hero{display:grid; grid-template-columns:136px 1fr; gap:16px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:16px; box-shadow:var(--shadow-card)}
+.game-hero .game-creature{min-height:136px}
+.game-hero .game-creature svg{width:124px; height:124px}
+.dash-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.dash-cell,.division-bar,.ach-card,.boss-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:13px 14px; box-shadow:var(--shadow-card)}
+.dash-v{font-family:var(--mono); font-size:1.35rem; font-weight:800; line-height:1; letter-spacing:-.04em}
+.dash-l{font-family:var(--mono); color:var(--muted); font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; margin-top:7px}
+.dash-hint{font-size:.82rem; color:var(--ink-soft); line-height:1.45; margin-top:7px}
+.division-bars{display:flex; flex-direction:column; gap:8px}
+.division-bar-top{display:flex; justify-content:space-between; gap:12px; font-size:.86rem; font-weight:700}
+.division-bar-top span:last-child{font-family:var(--mono); color:var(--muted); font-size:.7rem}
+.division-meter{height:7px; background:var(--paper-2); border:1px solid var(--line); border-radius:99px; overflow:hidden; margin-top:8px}
+.division-meter span{display:block; height:100%; background:var(--accent)}
+.ach-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+.ach-card{display:flex; gap:11px; align-items:flex-start; opacity:.55}
+.ach-card.unlocked{opacity:1; border-color:var(--accent-line)}
+.ach-icon{flex-shrink:0; width:34px; height:34px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--paper-2); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); font-weight:800; font-size:.72rem}
+.ach-card.unlocked .ach-icon{background:var(--accent-soft); border-color:var(--accent-line); color:var(--accent)}
+.ach-name{font-size:.9rem; font-weight:800; line-height:1.2}
+.ach-desc{font-size:.78rem; color:var(--ink-soft); line-height:1.35; margin-top:3px}
+.boss-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+.boss-card{display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left}
+.boss-card b{display:block; font-size:.95rem}
+.boss-card span{display:block; font-family:var(--mono); color:var(--muted); font-size:.56rem; letter-spacing:.08em; text-transform:uppercase; margin-top:4px}
+.boss-card:disabled{opacity:.52; cursor:not-allowed}
+.toast-host{position:fixed; right:16px; bottom:calc(80px + env(safe-area-inset-bottom)); z-index:90; display:flex; flex-direction:column; gap:9px; pointer-events:none}
+.toast{width:min(320px,calc(100vw - 32px)); background:var(--ink); color:var(--paper); border-radius:var(--r-md); padding:12px 13px; box-shadow:0 18px 40px -26px rgba(27,26,22,.8); transform:translateY(8px); opacity:0; animation:toastIn .22s ease forwards}
+.toast b{display:block; font-size:.88rem; margin-bottom:3px}
+.toast span{display:block; font-size:.78rem; opacity:.82; line-height:1.35}
+@keyframes toastIn{to{opacity:1; transform:none}}
+#burstCanvas{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:95}
+.boss-modal{max-width:720px}
+.boss-arena{display:flex; flex-direction:column; gap:14px}
+.boss-top{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.boss-title{font-size:1.35rem; font-weight:900; letter-spacing:-.03em}
+.boss-sub{font-family:var(--mono); color:var(--muted); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; margin-top:4px}
+.boss-score{font-family:var(--mono); text-align:right; font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em}
+.boss-score b{display:block; color:var(--ink); font-size:1.5rem; line-height:1}
+.boss-timer{height:9px; background:var(--paper-2); border:1px solid var(--line); border-radius:99px; overflow:hidden}
+.boss-timer span{display:block; height:100%; width:100%; background:linear-gradient(90deg,var(--accent),#b88b5a); transition:width .25s linear}
+.boss-question{font-size:1.15rem; font-weight:800; letter-spacing:-.02em; line-height:1.28}
+.boss-options{display:grid; gap:9px}
+.boss-opt{display:flex; gap:10px; text-align:left; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:12px; font-weight:600}
+.boss-opt b{font-family:var(--mono); color:var(--accent)}
+.boss-opt.good{border-color:var(--correct-line); background:var(--correct-soft)}
+.boss-opt.bad{border-color:var(--wrong-line); background:var(--wrong-soft)}
+.boss-result{text-align:center; padding:12px 0 2px}
+.boss-result-mark{font-size:2.8rem; font-weight:900; letter-spacing:-.06em}
+.boss-result-title{font-size:1.25rem; font-weight:900; margin-top:4px}
+.boss-result-copy{font-size:.9rem; color:var(--ink-soft); line-height:1.5; margin:8px auto 0; max-width:440px}
+@media (prefers-reduced-motion:no-preference){
+  .game-creature.mood-pumped svg{animation:creaturePulse 1.2s ease-in-out infinite}
+  .game-creature.evolving{animation:evoGlow 1.1s ease both}
+  @keyframes creaturePulse{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.035)}}
+  @keyframes evoGlow{0%{transform:scale(.96); box-shadow:0 0 0 rgba(91,134,197,0)}45%{transform:scale(1.04); box-shadow:0 0 0 8px rgba(91,134,197,.12)}100%{transform:scale(1); box-shadow:var(--shadow-card)}}
+}
 @media (max-width:620px){
   .brand{padding-right:0}
   .profile-chip{position:static; margin:0 0 20px auto}
   .profile-grid{grid-template-columns:1fr}
   .avatar-row{grid-template-columns:1fr}
+  .game-shell,.game-hero{grid-template-columns:1fr}
+  .game-creature{min-height:118px}
+  .dash-grid,.ach-grid,.boss-grid{grid-template-columns:1fr}
+  .game-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .game-actions{grid-template-columns:1fr}
   .coach-grid{grid-template-columns:1fr}
   .review-grid{grid-template-columns:repeat(4,1fr)}
   .q-timer{display:none}
@@ -647,6 +734,7 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 
     <div class="overall" id="overallStat"></div>
     <div class="coach-panel" id="coachPanel"></div>
+    <div class="game-panel" id="gamePanel"></div>
 
     <div class="section-label"><span>Choose a division</span><span class="rule"></span></div>
     <div class="div-grid" id="divGrid"></div>
@@ -745,6 +833,21 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     <p class="tab-intro">Every completed session, scored ARE-style — a Pass/Fail verdict and how each category landed against the passing line. Tap any exam for the full breakdown.</p>
     <div id="examAgg"></div>
     <div class="exam-list" id="examList"></div>
+  </div>
+</div>
+
+<!-- GAME / PROGRESS -->
+<div class="screen" id="game" data-screen-label="Game">
+  <div class="wrap tab-wrap">
+    <div class="tab-head">
+      <div>
+        <div class="eyebrow">Gamified progress</div>
+        <h1 class="tab-title">The Architect</h1>
+      </div>
+      <button class="add-btn" onclick="openBossPicker()">Boss</button>
+    </div>
+    <p class="tab-intro">XP, streaks, achievements, and boss challenges built from your real study history.</p>
+    <div class="game-dashboard" id="gameDash"></div>
   </div>
 </div>
 
@@ -908,6 +1011,14 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   </div>
 </div>
 
+<!-- BOSS BATTLE -->
+<div class="gen-overlay" id="bossOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Boss battle" onclick="if(event.target===this)closeBoss()">
+  <div class="gen-modal boss-modal">
+    <button class="gen-x" onclick="closeBoss()" aria-label="Close">&times;</button>
+    <div id="bossHost"></div>
+  </div>
+</div>
+
 <!-- BOTTOM TAB BAR -->
 <nav class="tab-bar" id="tabBar" aria-label="Primary">
   <div class="tab-bar-inner">
@@ -919,6 +1030,10 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
       <svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-6"/></svg>
       <span class="tl">Scores</span>
     </button>
+    <button class="tab-btn" data-screen="game" onclick="switchTab('game')">
+      <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M5 6H3v1a3 3 0 0 0 4 2.8M19 6h2v1a3 3 0 0 1-4 2.8"/></svg>
+      <span class="tl">Game</span>
+    </button>
     <button class="tab-btn" data-screen="synonyms" onclick="switchTab('synonyms')">
       <svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>
       <span class="tl">Synonyms</span>
@@ -929,6 +1044,8 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     </button>
   </div>
 </nav>
+<div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="false"></div>
+<canvas id="burstCanvas" aria-hidden="true"></canvas>
 
 <script>
 let QBANK=[];
@@ -1013,6 +1130,30 @@ let revealed=false, cataSet=new Set();
 let examTimer=null;
 const PROFILE_KEY='are_profile';
 let profilePhotoDraft='';
+const GAME_KEY='are_gamification';
+const GAME_STAGES=[
+  {name:'Blueprint',xp:0,need:'Begin the set'},
+  {name:'Drafting',xp:100,need:'7-day streak'},
+  {name:'Schematic',xp:500,need:'2 divisions attempted'},
+  {name:'Apprentice',xp:1500,need:'1 division passed'},
+  {name:'Candidate',xp:4000,need:'3 divisions passed'},
+  {name:'Licensed',xp:10000,need:'all 6 divisions passed'}
+];
+const ACHIEVEMENTS=[
+  ['night_owl','Night Owl','Study after 10 PM on 3 different days'],
+  ['iron_will','Iron Will','Build a 30-day streak'],
+  ['streak_7','Week Warrior','Build a 7-day streak'],
+  ['streak_14','Fortnight','Build a 14-day streak'],
+  ['contract_master','Contract Master','Answer 20 contract/AIA questions correctly in a row'],
+  ['code_breaker','Code Breaker','Answer 50 code questions correctly'],
+  ['boss_first','Boss Slayer','Defeat your first boss battle'],
+  ['boss_5','Dungeon Master','Defeat 5 boss battles'],
+  ['evolved_1','First Evolution','Reach creature stage 1'],
+  ['evolved_max','Licensed','Reach the final creature stage'],
+  ['xp_1000','Grinder','Accumulate 1,000 XP'],
+  ['comeback','Comeback Kid','Return after a broken streak and study 3 consecutive days']
+];
+let bossState={active:false,timer:null,div:null,qs:[],idx:0,hits:0,misses:0,seconds:20,locked:false};
 
 /* ── Load bank ──────────────────────────────────────────────── */
 function loadBank(){
@@ -1023,7 +1164,7 @@ function loadBank(){
     BASE=cleanQuestionBank(Array.isArray(data)?data:(data.questions||[]));
     if(!BASE.length) throw new Error('Question bank is empty');
     GEN=getGenerated(); rebuildQBANK();
-    buildGrid(); renderOverall(); renderProfile(); renderCoach(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
+    initGameDaily(); buildGrid(); renderOverall(); renderProfile(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
     setTimeout(()=>{overlay.style.opacity='0'; overlay.style.transition='opacity .4s'; setTimeout(()=>overlay.style.display='none',420);},220);
   }catch(e){
     overlay.innerHTML=`<div class="err-box">
@@ -1325,6 +1466,388 @@ function resizeProfilePhoto(src){
     img.src=src;
   });
 }
+
+/* ── Gamification engine ───────────────────────────────────── */
+function gameToday(d){
+  d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function dateFromISODate(s){ const p=String(s||'').split('-').map(Number); return p.length===3?new Date(p[0],p[1]-1,p[2]):null; }
+function dayGap(a,b){ const da=dateFromISODate(a), db=dateFromISODate(b); return da&&db?Math.round((db-da)/86400000):0; }
+function gameWeekStart(d){
+  d=d||new Date();
+  const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  const day=(x.getDay()+6)%7;
+  x.setDate(x.getDate()-day);
+  return gameToday(x);
+}
+function defaultGame(){
+  return {xp:0,streak:0,lastStudyDate:'',streakFreezeCount:0,weeklyXP:0,lastWeekXP:0,weekStart:gameWeekStart(),freezeWeek:'',achievements:[],creatureStage:0,creatureXP:0,equippedGear:[],bossDefeats:0,bossCooldowns:{},moodPumpedUntil:0,damageUntil:0,nightOwlDates:[],codeCorrect:0,contractStreak:0,structuralStreak:0,mepStreak:0,comebackArmed:false,comebackDates:[],reviewed:{}};
+}
+function cleanGame(raw){
+  const d=defaultGame(), g={...d,...(raw||{})};
+  ['xp','streak','streakFreezeCount','weeklyXP','lastWeekXP','creatureStage','creatureXP','bossDefeats','moodPumpedUntil','damageUntil','codeCorrect','contractStreak','structuralStreak','mepStreak'].forEach(k=>g[k]=Math.max(0,Number(g[k])||0));
+  ['achievements','equippedGear','nightOwlDates','comebackDates'].forEach(k=>g[k]=Array.isArray(g[k])?g[k]:[]);
+  g.bossCooldowns=g.bossCooldowns&&typeof g.bossCooldowns==='object'?g.bossCooldowns:{};
+  g.reviewed=g.reviewed&&typeof g.reviewed==='object'?g.reviewed:{};
+  g.weekStart=String(g.weekStart||gameWeekStart());
+  g.lastStudyDate=String(g.lastStudyDate||'');
+  g.freezeWeek=String(g.freezeWeek||'');
+  return g;
+}
+function getGame(){ try{return cleanGame(JSON.parse(localStorage.getItem(GAME_KEY)||'{}'));}catch(e){return defaultGame();} }
+function saveGame(g){ try{localStorage.setItem(GAME_KEY,JSON.stringify(cleanGame(g)));}catch(e){} }
+function rolloverGameWeek(g){
+  const ws=gameWeekStart();
+  if(!g.weekStart) g.weekStart=ws;
+  if(g.weekStart!==ws){
+    g.lastWeekXP=g.weeklyXP||0;
+    g.weeklyXP=0;
+    g.weekStart=ws;
+    g.freezeWeek='';
+  }
+}
+function gameToast(title,body){
+  const host=document.getElementById('toastHost'); if(!host) return;
+  const el=document.createElement('div');
+  el.className='toast';
+  el.innerHTML=`<b>${esc(title)}</b><span>${esc(body||'')}</span>`;
+  host.appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(8px)'; setTimeout(()=>el.remove(),260); },3000);
+}
+function burstConfetti(){
+  const c=document.getElementById('burstCanvas'); if(!c) return;
+  const ctx=c.getContext('2d'), dpr=window.devicePixelRatio||1;
+  c.width=Math.floor(window.innerWidth*dpr); c.height=Math.floor(window.innerHeight*dpr);
+  const colors=['#5b86c5','#7a9d5f','#b88b5a','#d9c7a0','#403b31'];
+  const bits=Array.from({length:90},()=>({x:Math.random()*c.width,y:-20*dpr-Math.random()*80*dpr,vx:(Math.random()-.5)*7*dpr,vy:(Math.random()*4+3)*dpr,r:(Math.random()*4+2)*dpr,a:Math.random()*Math.PI,va:(Math.random()-.5)*.22,col:colors[Math.floor(Math.random()*colors.length)]}));
+  let frames=0;
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    bits.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=.08*dpr; p.a+=p.va; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a); ctx.fillStyle=p.col; ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r); ctx.restore(); });
+    frames++;
+    if(frames<120) requestAnimationFrame(draw); else ctx.clearRect(0,0,c.width,c.height);
+  }
+  draw();
+}
+function passedDivisions(){
+  const pass={};
+  getExams().forEach(e=>{
+    if(!e.pass) return;
+    (e.divs&&e.divs.length?e.divs:[e.div]).forEach(d=>{ if(DIV_ORDER.includes(d)) pass[d]=1; });
+  });
+  return Object.keys(pass);
+}
+function attemptedDivisions(){
+  const s=getStats();
+  return DIV_ORDER.filter(d=>s[d]&&s[d].answered>0);
+}
+function eligibleGameStage(g){
+  const attempted=attemptedDivisions().length, passed=passedDivisions().length;
+  let st=0;
+  if(g.xp>=100 && g.streak>=7) st=1;
+  if(g.xp>=500 && attempted>=2) st=2;
+  if(g.xp>=1500 && passed>=1) st=3;
+  if(g.xp>=4000 && passed>=3) st=4;
+  if(g.xp>=10000 && passed>=6) st=5;
+  return st;
+}
+function unlockAchievementInState(g,id,quiet){
+  if((g.achievements||[]).includes(id)) return false;
+  g.achievements.push(id);
+  g.xp+=25; g.weeklyXP+=25;
+  const a=ACHIEVEMENTS.find(x=>x[0]===id);
+  if(!quiet){ gameToast(a?a[1]:'Achievement unlocked','Achievement unlocked +25 XP'); burstConfetti(); }
+  return true;
+}
+function unlockGearInState(g,id,label){
+  if((g.equippedGear||[]).includes(id)) return false;
+  g.equippedGear.push(id);
+  gameToast(label,'Cosmetic gear unlocked');
+  return true;
+}
+function postGameUpdate(g,quiet){
+  rolloverGameWeek(g);
+  if(g.weeklyXP>=200 && g.freezeWeek!==g.weekStart){
+    if(g.streakFreezeCount<1){
+      g.streakFreezeCount=1;
+      if(!quiet) gameToast('Streak freeze banked','You hit 200 XP this week.');
+    }
+    g.freezeWeek=g.weekStart;
+  }
+  const before=g.creatureStage||0, next=eligibleGameStage(g);
+  if(next>before){
+    g.creatureStage=next;
+    g.moodPumpedUntil=Date.now()+30*60000;
+    if(!quiet){ gameToast('Evolution unlocked','The Architect evolved into '+GAME_STAGES[next].name+'.'); burstConfetti(); }
+  }else g.creatureStage=Math.max(before,next);
+  const cur=GAME_STAGES[g.creatureStage]||GAME_STAGES[0];
+  g.creatureXP=Math.max(0,g.xp-cur.xp);
+  checkGameAchievements(g,quiet);
+  return g;
+}
+function checkGameAchievements(g,quiet){
+  if(g.streak>=7) unlockAchievementInState(g,'streak_7',quiet);
+  if(g.streak>=14) unlockAchievementInState(g,'streak_14',quiet);
+  if(g.streak>=30) unlockAchievementInState(g,'iron_will',quiet);
+  if((g.nightOwlDates||[]).length>=3) unlockAchievementInState(g,'night_owl',quiet);
+  if(g.contractStreak>=20) unlockAchievementInState(g,'contract_master',quiet);
+  if(g.codeCorrect>=50) unlockAchievementInState(g,'code_breaker',quiet);
+  if(g.bossDefeats>=1) unlockAchievementInState(g,'boss_first',quiet);
+  if(g.bossDefeats>=5) unlockAchievementInState(g,'boss_5',quiet);
+  if(g.creatureStage>=1) unlockAchievementInState(g,'evolved_1',quiet);
+  if(g.creatureStage>=5) unlockAchievementInState(g,'evolved_max',quiet);
+  if(g.xp>=1000) unlockAchievementInState(g,'xp_1000',quiet);
+  if((g.comebackDates||[]).length>=3) unlockAchievementInState(g,'comeback',quiet);
+}
+function gameStudyDay(g){
+  const today=gameToday(), last=g.lastStudyDate;
+  if(last===today) return false;
+  const gap=last?dayGap(last,today):0;
+  if(!last) g.streak=1;
+  else if(gap===1) g.streak++;
+  else if(gap===2 && g.streakFreezeCount>0){
+    g.streakFreezeCount--;
+    g.streak++;
+    gameToast('Streak freeze used','Your streak survived the missed day.');
+  }else if(gap>1){
+    g.streak=1;
+    g.comebackArmed=true;
+    g.comebackDates=[];
+    g.damageUntil=Date.now()+60*60000;
+  }else g.streak=Math.max(1,g.streak||1);
+  if(g.comebackArmed){
+    g.comebackDates=[...(g.comebackDates||[]).filter(d=>dayGap(d,today)<3),today];
+  }
+  g.lastStudyDate=today;
+  return true;
+}
+function initGameDaily(){
+  const g=getGame();
+  rolloverGameWeek(g);
+  const fresh=gameStudyDay(g);
+  if(fresh){ g.xp+=2; g.weeklyXP+=2; }
+  postGameUpdate(g,true);
+  saveGame(g);
+  if(fresh) gameToast('Daily studio check-in','+2 XP for opening the app today.');
+}
+function gameTopicKind(q){
+  const text=((q&&q.topic)||'')+' '+((q&&q.question_text)||'')+' '+(((q&&q.summary_explanation)||''));
+  const s=text.toLowerCase();
+  return {
+    contract:/contract|aia|b101|a201|a101|a133|c401|rfi|change order|submittal/.test(s),
+    code:/\bcode\b|ibc|ada|accessibility|egress|occupancy|fire|life safety|zoning/.test(s),
+    structural:/structural|seismic|lateral|foundation|beam|column|diaphragm|shear|load path|wood|steel|concrete/.test(s),
+    mep:/mep|mechanical|electrical|plumbing|hvac|commissioning|sprinkler|lighting|thermal|water service|air handler/.test(s)
+  };
+}
+function gameRecordAnswers(rows,opts){
+  rows=rows||[]; opts=opts||{};
+  const g=getGame(); rolloverGameWeek(g); gameStudyDay(g);
+  let gained=0;
+  const now=new Date(), today=gameToday(now);
+  rows.forEach(r=>{
+    const q=r.q, ok=!!r.correct, kind=gameTopicKind(q);
+    if(now.getHours()>=22 && !g.nightOwlDates.includes(today)) g.nightOwlDates.push(today);
+    if(ok){ g.xp+=10; g.weeklyXP+=10; gained+=10; }
+    if(kind.contract){ g.contractStreak=ok?g.contractStreak+1:0; if(g.contractStreak>=20) unlockGearInState(g,'gear-contract','Contract seal'); }
+    if(kind.structural){ g.structuralStreak=ok?g.structuralStreak+1:0; if(g.structuralStreak>=10) unlockGearInState(g,'gear-structural','Structural badge'); }
+    if(kind.mep){ g.mepStreak=ok?g.mepStreak+1:0; if(g.mepStreak>=10) unlockGearInState(g,'gear-mep','Systems badge'); }
+    if(kind.code && ok) g.codeCorrect++;
+  });
+  postGameUpdate(g,opts.quiet);
+  saveGame(g);
+  if(gained&&!opts.quiet) gameToast('+'+gained+' XP','Correct answer');
+  renderGame();
+}
+function gameCompleteSession(rec){
+  const g=getGame(); rolloverGameWeek(g); gameStudyDay(g);
+  g.xp+=15; g.weeklyXP+=15;
+  postGameUpdate(g,false);
+  saveGame(g);
+  gameToast('+15 XP','Session complete');
+  renderGame();
+}
+function awardReviewXP(key,label){
+  const g=getGame(), today=gameToday();
+  g.reviewed=g.reviewed||{};
+  if(g.reviewed[key]===today) return;
+  g.reviewed[key]=today;
+  g.xp+=5; g.weeklyXP+=5;
+  postGameUpdate(g,false);
+  saveGame(g);
+  gameToast('+5 XP',label||'Review complete');
+  renderGame();
+}
+function availableBossTokens(g){ return Math.max(0,Math.floor((g.xp||0)/500)-(g.bossDefeats||0)); }
+function nextBossXP(g){ return Math.max(500,Math.ceil(((g.bossDefeats||0)+1)*500)); }
+function gameMood(g){
+  const now=Date.now();
+  if((g.damageUntil||0)>now) return 'mood-damaged';
+  if((g.moodPumpedUntil||0)>now) return 'mood-pumped';
+  if(g.lastStudyDate && dayGap(g.lastStudyDate,gameToday())>=2) return 'mood-droopy';
+  return 'mood-happy';
+}
+function gameStageProgress(g){
+  const st=g.creatureStage||0, cur=GAME_STAGES[st], next=GAME_STAGES[st+1];
+  if(!next) return {pct:100,label:'Max stage',next:null};
+  const got=Math.max(0,g.xp-cur.xp), need=Math.max(1,next.xp-cur.xp);
+  return {pct:Math.min(100,Math.round(got/need*100)),label:got+' / '+need+' XP',next};
+}
+function creatureSVG(g){
+  const st=g.creatureStage||0, mood=gameMood(g);
+  const mouth=mood==='mood-droopy'||mood==='mood-damaged'?'M54 53q6 -5 12 0':'M54 51q6 6 12 0';
+  if(st===0){
+    return `<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="20" y="33" width="78" height="52" rx="13" fill="#f8f3e7" stroke="#403b31" stroke-width="3"/><path d="M28 44h62M28 58h48M28 72h54" stroke="#5b86c5" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="61" r="3" fill="#403b31"/><circle cx="68" cy="61" r="3" fill="#403b31"/><path d="${mouth}" fill="none" stroke="#403b31" stroke-width="3" stroke-linecap="round"/><path d="M92 35c12 8 8 25-8 28" fill="none" stroke="#b88b5a" stroke-width="5" stroke-linecap="round"/></svg>`;
+  }
+  const hat=st>=3?`<path d="M39 39q20-16 42 0v7H39z" fill="#b88b5a" stroke="#403b31" stroke-width="3"/><path d="M35 46h50" stroke="#403b31" stroke-width="4" stroke-linecap="round"/>`:'';
+  const suit=st>=4?`<path d="M48 75l12 15 12-15v29H48z" fill="#403b31" opacity=".9"/>`:`<path d="M45 74h30l8 30H37z" fill="#d9c7a0" stroke="#403b31" stroke-width="3"/>`;
+  const blue=st>=2?`<rect x="18" y="74" width="28" height="20" rx="4" fill="#eaf1fb" stroke="#5b86c5" stroke-width="3"/><path d="M24 82h16M24 88h10" stroke="#5b86c5" stroke-width="2" stroke-linecap="round"/>`:'';
+  const pencil=st>=1?`<path d="M82 82l16-16 6 6-16 16-9 3z" fill="#b88b5a" stroke="#403b31" stroke-width="2"/>`:'';
+  const stamp=st>=5?`<circle cx="90" cy="30" r="18" fill="none" stroke="#7a9d5f" stroke-width="4"/><text x="90" y="35" text-anchor="middle" font-size="12" font-family="monospace" fill="#7a9d5f" font-weight="900">AIA</text>`:'';
+  const gear=(g.equippedGear||[]).map((id,i)=>`<circle cx="${32+i*18}" cy="108" r="7" fill="${id==='gear-structural'?'#5b86c5':id==='gear-mep'?'#7a9d5f':'#b88b5a'}" stroke="#403b31" stroke-width="2"/>`).join('');
+  return `<svg viewBox="0 0 120 120" aria-hidden="true">${stamp}<circle cx="60" cy="48" r="23" fill="#f4d8b6" stroke="#403b31" stroke-width="3"/>${hat}<circle cx="51" cy="49" r="3" fill="#403b31"/><circle cx="69" cy="49" r="3" fill="#403b31"/><path d="${mouth}" fill="none" stroke="#403b31" stroke-width="3" stroke-linecap="round"/>${suit}${blue}${pencil}${gear}</svg>`;
+}
+function creatureBox(g,big){
+  return `<div class="game-creature ${gameMood(g)}${big?' game-creature-big':''}" id="${big?'gameCreatureBig':'gameCreature'}">${creatureSVG(g)}<span class="game-crack"></span></div>`;
+}
+function renderGame(){
+  const g=postGameUpdate(getGame(),true); saveGame(g);
+  const prog=gameStageProgress(g), tokens=availableBossTokens(g), nextXP=nextBossXP(g);
+  const panel=document.getElementById('gamePanel');
+  if(panel){
+    panel.innerHTML=`<div class="game-shell">
+      ${creatureBox(g,false)}
+      <div class="game-info">
+        <div class="game-kicker">The Architect</div>
+        <div class="game-title"><span>${GAME_STAGES[g.creatureStage].name}</span><span class="game-stage-pill">Stage ${g.creatureStage}</span></div>
+        <div class="game-sub">${tokens?tokens+' boss challenge ready.':'Next boss unlocks at '+nextXP+' XP.'} ${prog.next?'Next evolution: '+prog.next.name+' ('+prog.next.need+').':'Final form reached.'}</div>
+        <div class="game-meter"><span style="width:${prog.pct}%"></span></div>
+        <div class="game-stats">
+          <div class="game-stat"><b>${g.xp}</b><span>Total XP</span></div>
+          <div class="game-stat"><b>${g.streak}</b><span>Day streak</span></div>
+          <div class="game-stat"><b>${g.weeklyXP}</b><span>Week XP</span></div>
+        </div>
+        <div class="game-actions">
+          <button class="mini-btn" onclick="switchTab('game')">Open game</button>
+          <button class="mini-btn${tokens?'':' locked'}" ${tokens?'onclick="openBossPicker()"':'disabled'}>${tokens?'Challenge boss':'Boss locked'}</button>
+        </div>
+      </div>
+    </div>`;
+  }
+  const dash=document.getElementById('gameDash');
+  if(dash) renderGameDash(dash,g,prog,tokens);
+}
+function renderGameDash(host,g,prog,tokens){
+  const arrow=g.weeklyXP===(g.lastWeekXP||0)?'level':(g.weeklyXP>(g.lastWeekXP||0)?'up':'down');
+  const stats=getStats();
+  const divBars=DIV_ORDER.map(d=>{
+    const o=stats[d]||{answered:0,correct:0}, pct=o.answered?Math.round(o.correct/o.answered*100):0;
+    return `<div class="division-bar"><div class="division-bar-top"><span>${d} · ${DIV_NAMES[d]}</span><span>${o.correct}/${o.answered}</span></div><div class="division-meter"><span style="width:${pct}%"></span></div></div>`;
+  }).join('');
+  const ach=ACHIEVEMENTS.map((a,i)=>{
+    const on=(g.achievements||[]).includes(a[0]);
+    return `<div class="ach-card${on?' unlocked':''}"><div class="ach-icon">${on?'OK':String(i+1).padStart(2,'0')}</div><div><div class="ach-name">${esc(a[1])}</div><div class="ach-desc">${esc(a[2])}</div></div></div>`;
+  }).join('');
+  const bosses=DIV_ORDER.map(d=>{
+    const cd=(g.bossCooldowns&&g.bossCooldowns[d]||0)-Date.now();
+    const disabled=!tokens||cd>0;
+    const meta=cd>0?'Cooldown '+Math.ceil(cd/60000)+'m':(tokens?'10 questions · 7 to win':'Unlock at '+nextBossXP(g)+' XP');
+    return `<button class="boss-card" ${disabled?'disabled':''} onclick="startBossBattle('${d}')"><div><b>${d} boss</b><span>${esc(meta)}</span></div><span>${DIV_NAMES[d]}</span></button>`;
+  }).join('');
+  host.innerHTML=`<div class="game-hero">${creatureBox(g,true)}<div>
+      <div class="game-kicker">Current form</div>
+      <div class="game-title"><span>${GAME_STAGES[g.creatureStage].name}</span><span class="game-stage-pill">Stage ${g.creatureStage}</span></div>
+      <div class="game-sub">${prog.next?'Next: '+prog.next.name+' · '+prog.label+' · '+prog.next.need:'The Licensed form is online.'}</div>
+      <div class="game-meter"><span style="width:${prog.pct}%"></span></div>
+    </div></div>
+    <div class="dash-grid">
+      <div class="dash-cell"><div class="dash-v">${g.xp}</div><div class="dash-l">Total XP</div></div>
+      <div class="dash-cell"><div class="dash-v">${g.streak}</div><div class="dash-l">Current streak</div><div class="dash-hint">${g.streakFreezeCount} freeze banked</div></div>
+      <div class="dash-cell"><div class="dash-v">${g.weeklyXP}</div><div class="dash-l">This week</div><div class="dash-hint">${arrow} vs ${g.lastWeekXP||0} last week</div></div>
+      <div class="dash-cell"><div class="dash-v">${g.bossDefeats}</div><div class="dash-l">Boss wins</div><div class="dash-hint">${tokens} challenge token${tokens===1?'':'s'}</div></div>
+    </div>
+    <div class="section-label"><span>Division progress</span><span class="rule"></span></div><div class="division-bars">${divBars}</div>
+    <div class="section-label"><span>Boss battles</span><span class="rule"></span></div><div class="boss-grid">${bosses}</div>
+    <div class="section-label"><span>Achievements</span><span class="rule"></span></div><div class="ach-grid">${ach}</div>`;
+}
+function openBossPicker(){ renderGame(); renderBossPicker(); openDialog('bossOverlay'); }
+function renderBossPicker(){
+  const g=getGame(), tokens=availableBossTokens(g);
+  document.getElementById('bossHost').innerHTML=`<div class="boss-arena">
+    <div class="boss-top"><div><div class="boss-title">Boss Battle</div><div class="boss-sub">${tokens?tokens+' challenge token ready':'Next token at '+nextBossXP(g)+' XP'}</div></div><div class="boss-score"><b>${g.bossDefeats}</b>defeated</div></div>
+    <p class="gen-sub">Pick a division. You get 10 rapid-fire questions, 20 seconds each. Score 7 or more to win +100 XP.</p>
+    <div class="boss-grid">${DIV_ORDER.map(d=>`<button class="boss-card" ${tokens?'':'disabled'} onclick="startBossBattle('${d}')"><div><b>${d} boss</b><span>${DIV_NAMES[d]}</span></div><span>${tokens?'Start':'Locked'}</span></button>`).join('')}</div>
+  </div>`;
+}
+function startBossBattle(div){
+  const g=getGame(), tokens=availableBossTokens(g), cd=(g.bossCooldowns&&g.bossCooldowns[div]||0)-Date.now();
+  if(!tokens){ gameToast('Boss locked','Earn '+(nextBossXP(g)-g.xp)+' more XP.'); return; }
+  if(cd>0){ gameToast('Boss recovering','Try again in '+Math.ceil(cd/60000)+' minutes.'); return; }
+  const pool=QBANK.filter(q=>q.division===div&&!isCataQ(q));
+  if(pool.length<10){ gameToast('Not enough questions','This division needs at least 10 multiple-choice questions.'); return; }
+  const qs=[...pool].sort(()=>Math.random()-.5).slice(0,10);
+  bossState={active:true,timer:null,div,qs,idx:0,hits:0,misses:0,seconds:20,locked:false};
+  openDialog('bossOverlay');
+  renderBossQuestion();
+}
+function renderBossQuestion(){
+  const b=bossState, q=b.qs[b.idx];
+  if(!b.active||!q) return;
+  clearInterval(b.timer); b.seconds=20; b.locked=false;
+  document.getElementById('bossHost').innerHTML=`<div class="boss-arena">
+    <div class="boss-top"><div><div class="boss-title">Boss Battle: ${b.div}</div><div class="boss-sub">Question ${b.idx+1} of ${b.qs.length}</div></div><div class="boss-score"><b>${b.hits}</b>hits</div></div>
+    <div class="boss-timer"><span id="bossTimerBar" style="width:100%"></span></div>
+    <div class="boss-question">${esc(q.question_text)}</div>
+    <div class="boss-options">${q.options.map(o=>`<button class="boss-opt" id="boss_${o.id}" onclick="answerBoss('${o.id}')"><b>${o.id}</b><span>${esc(o.text)}</span></button>`).join('')}</div>
+  </div>`;
+  b.timer=setInterval(()=>{ b.seconds--; const bar=document.getElementById('bossTimerBar'); if(bar) bar.style.width=Math.max(0,b.seconds/20*100)+'%'; if(b.seconds<=0) bossTimeout(); },1000);
+}
+function answerBoss(id){
+  const b=bossState, q=b.qs[b.idx]; if(!b.active||b.locked||!q) return;
+  b.locked=true; clearInterval(b.timer);
+  const correct=q.options.find(o=>o.is_correct), ok=correct&&id===correct.id;
+  if(ok) b.hits++; else b.misses++;
+  q.options.forEach(o=>{ const el=document.getElementById('boss_'+o.id); if(el){ el.disabled=true; if(o.is_correct) el.classList.add('good'); else if(o.id===id) el.classList.add('bad'); } });
+  setTimeout(nextBossQuestion,650);
+}
+function bossTimeout(){
+  const b=bossState; if(!b.active||b.locked) return;
+  b.locked=true; clearInterval(b.timer); b.misses++;
+  const q=b.qs[b.idx]; if(q){ q.options.forEach(o=>{ const el=document.getElementById('boss_'+o.id); if(el){ el.disabled=true; if(o.is_correct) el.classList.add('good'); } }); }
+  setTimeout(nextBossQuestion,800);
+}
+function nextBossQuestion(){
+  bossState.idx++;
+  if(bossState.idx>=bossState.qs.length) finishBossBattle();
+  else renderBossQuestion();
+}
+function finishBossBattle(){
+  const b=bossState, won=b.hits>=7, g=getGame();
+  clearInterval(b.timer);
+  if(won){
+    g.bossDefeats++;
+    g.xp+=100; g.weeklyXP+=100; g.moodPumpedUntil=Date.now()+30*60000;
+    postGameUpdate(g,false); saveGame(g); burstConfetti();
+  }else{
+    g.damageUntil=Date.now()+60*60000;
+    g.bossCooldowns=g.bossCooldowns||{}; g.bossCooldowns[b.div]=Date.now()+30*60000;
+    postGameUpdate(g,true); saveGame(g);
+  }
+  document.getElementById('bossHost').innerHTML=`<div class="boss-result">
+    <div class="boss-result-mark">${won?'PASS':'TRY'}</div>
+    <div class="boss-result-title">${won?'Boss defeated':'Boss escaped'}</div>
+    <div class="boss-result-copy">${won?'You landed '+b.hits+' of 10. +100 XP and The Architect is pumped for 30 minutes.':'You landed '+b.hits+' of 10. No XP penalty. This boss cools down for 30 minutes.'}</div>
+    <div class="form-actions" style="margin-top:18px"><button class="btn-save" onclick="closeBoss()">Done</button><button class="btn-cancel" onclick="renderBossPicker()">Pick another</button></div>
+  </div>`;
+  bossState.active=false;
+  renderGame();
+}
+function closeBoss(){ if(bossState.timer) clearInterval(bossState.timer); bossState.active=false; closeDialog('bossOverlay'); }
+function jumpExamReview(i){
+  if(session.flags&&session.flags[i]) awardReviewXP('flag_'+(session.qs[i]&&session.qs[i].id||i),'Flagged question reviewed');
+  session.idx=i; session.reviewing=false; renderQ();
+}
 function getTopicStats(){ try{return JSON.parse(localStorage.getItem('are_topic_stats')||'{}');}catch(e){return {};} }
 function weakTopics(limit){
   const ts=getTopicStats();
@@ -1348,6 +1871,8 @@ function recommendPlan(){
 }
 function startCoachSession(){
   const rec=recommendPlan();
+  const weak=weakTopics(1)[0];
+  if(weak) awardReviewXP('weak_'+weak.topic,'Weak topic review');
   setMode('practice');
   setQC(10,document.querySelector('.qc-btn:nth-child(3)'));
   if(rec.div){ pickDiv(rec.div); }
@@ -1550,7 +2075,7 @@ function restartSame(){
   }
   startSession();
 }
-function goSelect(){ stopExamTimer(); buildGrid(); renderOverall(); renderCoach(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('select'); }
+function goSelect(){ stopExamTimer(); buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('select'); }
 function confirmExit(){ if(confirm(session.mode==='exam'?'Exit this exam? Your unsent answers will be lost.':'Exit this session? Your progress on these questions is saved.')) goSelect(); }
 function startExamTimer(){ stopExamTimer(); updateTimerChip(); examTimer=setInterval(()=>{ session.secondsLeft=Math.max(0,(session.secondsLeft||0)-1); updateTimerChip(); if(session.secondsLeft<=0){ stopExamTimer(); alert('Time is up. Your exam will be scored now.'); showScore(); } },1000); }
 function stopExamTimer(){ if(examTimer){ clearInterval(examTimer); examTimer=null; } const t=document.getElementById('qTimer'); if(t) t.hidden=true; }
@@ -1673,7 +2198,7 @@ function showExamReview(){
   session.reviewing=true;
   updateTimerChip(); updateScoreChip(); renderSteps();
   const total=session.qs.length, answered=answeredCount(), flags=Object.keys(session.flags||{}).length;
-  const items=session.qs.map((q,i)=>`<button class="review-item${answeredAt(i)?' answered':''}${session.flags&&session.flags[i]?' flagged':''}" onclick="session.idx=${i};session.reviewing=false;renderQ()">${i+1}</button>`).join('');
+  const items=session.qs.map((q,i)=>`<button class="review-item${answeredAt(i)?' answered':''}${session.flags&&session.flags[i]?' flagged':''}" onclick="jumpExamReview(${i})">${i+1}</button>`).join('');
   document.getElementById('qBody').innerHTML=`<div class="q-meta"><span class="q-type">Exam review</span><span class="q-topic">${esc(examDivLabel(session))}</span></div>
     <h2 class="q-text">Review before scoring.</h2>
     <div class="review-meta"><span class="review-pill">${answered}/${total} answered</span><span class="review-pill">${flags} flagged</span><span class="review-pill">${formatSeconds(session.secondsLeft||0)} left</span></div>
@@ -1704,6 +2229,7 @@ function pickMC(id){
   if(isRight) session.correct++; else session.missed.push({topic:q.topic,text:trimQ(q.question_text)});
   session.results[session.idx]=isRight;
   updateStats(session.div,isRight); updateTopicStats(q.topic,isRight);
+  gameRecordAnswers([{q,correct:isRight}]);
   revealAll(q,id,null); renderSteps(); updateScoreChip(); showNextBtn();
 }
 function toggleCata(id){
@@ -1747,6 +2273,7 @@ function submitCata(){
   if(isRight) session.correct++; else session.missed.push({topic:q.topic,text:trimQ(q.question_text)});
   session.results[session.idx]=isRight;
   updateStats(session.div,isRight); updateTopicStats(q.topic,isRight);
+  gameRecordAnswers([{q,correct:isRight}]);
   revealAll(q,null,cataSet); renderSteps(); updateScoreChip(); showNextBtn();
 }
 function revealAll(q,selectedId,checkedSet){
@@ -1816,11 +2343,13 @@ function showScore(){
   if(session.mode==='exam'&&!session.graded) gradeExamSession();
   stopExamTimer();
   const rec=recordExam();
+  gameCompleteSession(rec);
   document.getElementById('scoreBody').innerHTML=reportHTML(rec,'Session complete');
   showScreen('score');
 }
 function gradeExamSession(){
   session.correct=0; session.missed=[]; session.results=[];
+  const gameRows=[];
   session.qs.forEach((q,i)=>{
     const a=session.answers[i];
     let ok=false;
@@ -1834,7 +2363,9 @@ function gradeExamSession(){
     session.results[i]=ok;
     if(ok) session.correct++; else session.missed.push({topic:q.topic,text:trimQ(q.question_text)});
     updateStats(session.div,ok,q); updateTopicStats(q.topic,ok);
+    gameRows.push({q,correct:ok});
   });
+  gameRecordAnswers(gameRows,{quiet:true});
   markSeen(session.qs.map(q=>q.id));
   session.graded=true;
 }
@@ -1960,7 +2491,7 @@ function updateTopicStats(topic,correct){
 function resetProgress(){
   if(!confirm('Reset all mastery, topic progress, and your seen-question history? This cannot be undone.')) return;
   localStorage.removeItem('are_stats'); localStorage.removeItem('are_topic_stats'); localStorage.removeItem('are_seen');
-  buildGrid(); renderOverall(); renderCoach(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshPoolLink(); updateStartBtn();
 }
 function resetPool(){
   const n=seenCount();
@@ -2000,7 +2531,7 @@ function downloadFile(name,text,type){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
-const PROGRESS_KEYS=['are_stats','are_topic_stats','are_seen','are_exams','are_generated','are_synonyms','are_mnemonics','are_mn_review','are_profile'];
+const PROGRESS_KEYS=['are_stats','are_topic_stats','are_seen','are_exams','are_generated','are_synonyms','are_mnemonics','are_mn_review','are_profile','are_gamification'];
 function exportProgress(){
   const data={app:'ARE 5.0 Practice',version:2,exportedAt:new Date().toISOString(),items:{}};
   PROGRESS_KEYS.forEach(k=>{ const v=localStorage.getItem(k); if(v!=null) data.items[k]=v; });
@@ -2016,7 +2547,7 @@ function importProgressFile(input){
       const items=data&&data.items;
       if(!items||typeof items!=='object') throw new Error('That file does not look like ARE progress.');
       PROGRESS_KEYS.forEach(k=>{ if(Object.prototype.hasOwnProperty.call(items,k)) localStorage.setItem(k,String(items[k])); });
-      GEN=getGenerated(); rebuildQBANK(); buildGrid(); renderOverall(); renderProfile(); renderCoach(); refreshClearLink(); refreshPoolLink(); renderScores();
+      GEN=getGenerated(); rebuildQBANK(); buildGrid(); renderOverall(); renderProfile(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); renderScores();
       alert('Progress imported.');
     }catch(e){ alert('Could not import progress.\n\n'+e.message); }
   };
@@ -2068,7 +2599,7 @@ function flashExport(msg){
 function clearGenerated(){
   if(!GEN.length) return;
   if(!confirm('Remove all '+GEN.length+' AI-generated questions? Your original bank stays intact.')) return;
-  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderOverall(); renderCoach(); refreshClearLink();
+  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshClearLink();
 }
 
 let genState=null;
@@ -2247,7 +2778,7 @@ function finishGen(){
   const added=genState?genState.added:0;
   const divs=genState?genState.divs:[];
   if(genState) genState.running=false;
-  buildGrid(); renderOverall(); renderCoach(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
   document.getElementById('genStatus').textContent=added>0
     ? `Added ${added} new question${added===1?'':'s'} across ${divs.join(', ')}.`
     : 'Could not generate questions just now \u2014 please try again in a moment.';
@@ -2628,7 +3159,7 @@ function flipMn(id){ const c=document.querySelector('.mn-card[data-id="'+id+'"]'
 window.addEventListener('resize',()=>{ if(document.getElementById('mnemonics').classList.contains('active')) sizeMnCards(); });
 
 /* ── Utility ────────────────────────────────────────────────── */
-const NAV_SCREENS=['select','scores','synonyms','mnemonics'];
+const NAV_SCREENS=['select','scores','game','synonyms','mnemonics'];
 let lastDialogFocus=null;
 function initA11y(){
   document.querySelectorAll('.qc-btn,.diff-btn,.gen-diff-btn,.gen-count-btn,.mode-btn').forEach(b=>b.setAttribute('aria-pressed',(b.classList.contains('selected')||b.classList.contains('on'))?'true':'false'));
@@ -2649,7 +3180,7 @@ function closeDialog(id){
 function activeDialog(){ return document.querySelector('.gen-overlay.open'); }
 document.addEventListener('keydown',e=>{
   const d=activeDialog(); if(!d) return;
-  if(e.key==='Escape'){ if(d.id==='genOverlay') closeGen(); else if(d.id==='examOverlay') closeExam(); else if(d.id==='mixOverlay') closeMix(); else if(d.id==='profileOverlay') closeProfile(); }
+  if(e.key==='Escape'){ if(d.id==='genOverlay') closeGen(); else if(d.id==='examOverlay') closeExam(); else if(d.id==='mixOverlay') closeMix(); else if(d.id==='profileOverlay') closeProfile(); else if(d.id==='bossOverlay') closeBoss(); }
   if(e.key!=='Tab') return;
   const f=focusables(d); if(!f.length) return;
   const first=f[0], last=f[f.length-1];
@@ -2669,9 +3200,10 @@ function showScreen(id){
 }
 function switchTab(tab){
   if(tab==='scores'){ showScreen('scores'); renderScores(); }
+  else if(tab==='game'){ showScreen('game'); renderGame(); }
   else if(tab==='synonyms'){ showScreen('synonyms'); renderSyn(); }
   else if(tab==='mnemonics'){ showScreen('mnemonics'); renderMn(); }
-  else { showScreen('select'); }
+  else { renderGame(); showScreen('select'); }
 }
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function trimQ(s){s=String(s||''); return s.length>72?s.slice(0,72).trim()+'\u2026':s;}
