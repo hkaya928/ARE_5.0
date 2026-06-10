@@ -59,13 +59,29 @@ button{font-family:inherit; color:inherit; cursor:pointer}
 }
 
 /* ─────────────────────────  SELECT  ───────────────────────── */
-#select{padding-bottom:184px}
+#select{padding-bottom:96px}
+#exam{padding-bottom:184px}
 .select-wrap{max-width:880px; padding-top:max(34px,env(safe-area-inset-top)); position:relative}
 .brand{text-align:left; margin-bottom:26px; padding-right:172px}
 .eyebrow{font-family:var(--mono); font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
 .brand-title{font-size:clamp(2.6rem,9vw,3.7rem); font-weight:800; letter-spacing:-.04em; line-height:.95}
 .brand-title span{color:var(--accent)}
 .brand-sub{color:var(--ink-soft); font-size:clamp(.95rem,3.4vw,1.08rem); margin-top:10px; max-width:34ch}
+.dashboard-grid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr); gap:16px; align-items:start}
+.dashboard-main,.dashboard-side{min-width:0}
+.dashboard-side{position:sticky; top:max(24px,env(safe-area-inset-top)); display:flex; flex-direction:column; gap:12px}
+.dash-profile-card{margin:0}
+.dash-profile-actions{display:grid; gap:9px}
+.planner-panel{margin:0 0 30px}
+.planner-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:17px 18px; box-shadow:var(--shadow-card)}
+.planner-head{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:12px}
+.planner-title{font-size:1.02rem; font-weight:800; letter-spacing:-.015em; line-height:1.25}
+.planner-sub{font-size:.86rem; color:var(--ink-soft); line-height:1.45; margin-top:5px}
+.planner-days{flex-shrink:0; min-width:76px; text-align:right; font-family:var(--mono); color:var(--muted); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase}
+.planner-days b{display:block; color:var(--ink); font-size:1.7rem; line-height:1; letter-spacing:-.04em}
+.planner-form{display:grid; grid-template-columns:1fr 1fr auto; gap:9px; align-items:end}
+.planner-form .fld{margin-bottom:0}
+.exam-wrap{max-width:880px}
 
 .overall{margin:26px 0 30px}
 .ov-empty{font-size:.92rem; color:var(--ink-soft); line-height:1.6; border-left:2px solid var(--accent-line); padding:2px 0 2px 16px; max-width:52ch}
@@ -410,6 +426,7 @@ button{font-family:inherit; color:inherit; cursor:pointer}
 /* ── Reference tabs (Synonyms / Mnemonics) shared ───────────── */
 #synonyms, #mnemonics{padding-bottom:96px}
 .tab-wrap{max-width:640px; padding-top:max(30px,env(safe-area-inset-top))}
+#materials .tab-wrap{max-width:1040px}
 .tab-head{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:6px}
 .tab-title{font-size:clamp(1.7rem,6vw,2.2rem); font-weight:800; letter-spacing:-.035em; line-height:1}
 .tab-intro{color:var(--ink-soft); font-size:.9rem; line-height:1.55; margin:10px 0 18px; max-width:48ch}
@@ -646,14 +663,14 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .material-filter{flex-shrink:0; min-height:34px; padding:0 13px; background:var(--card); border:1px solid var(--line); border-radius:99px; font-family:var(--mono); font-size:.66rem; font-weight:700; letter-spacing:.05em; color:var(--ink-soft)}
 .material-filter.on{background:var(--ink); border-color:var(--ink); color:var(--paper)}
 .material-suggest{margin:2px 0 14px}
-.material-layout{display:grid; grid-template-columns:minmax(190px,.75fr) minmax(0,1.45fr); gap:13px; align-items:start}
-.material-list{display:flex; flex-direction:column; gap:8px}
+.material-layout{display:grid; grid-template-columns:minmax(230px,.72fr) minmax(0,1.55fr); gap:13px; align-items:stretch; height:calc(100dvh - 246px); min-height:500px; overflow:hidden}
+.material-list{display:flex; flex-direction:column; gap:8px; overflow:auto; padding-right:5px; min-height:0; overscroll-behavior:contain}
 .material-item{width:100%; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:12px 13px; box-shadow:var(--shadow-card); transition:border-color .15s, transform .14s}
 @media (hover:hover){.material-item:hover{border-color:var(--line-2); transform:translateY(-1px)}}
 .material-item.on{border-color:var(--ink); box-shadow:0 0 0 1px var(--ink), var(--shadow-card)}
 .material-item-title{font-size:.9rem; font-weight:800; letter-spacing:-.01em; line-height:1.25}
 .material-item-meta{font-family:var(--mono); color:var(--muted); font-size:.56rem; letter-spacing:.08em; text-transform:uppercase; margin-top:6px}
-.material-reader{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:20px 21px 22px; box-shadow:var(--shadow-card)}
+.material-reader{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:20px 21px 22px; box-shadow:var(--shadow-card); height:100%; overflow:auto; min-height:0; overscroll-behavior:contain}
 .material-reader-kicker{font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 .material-reader h2{font-size:1.55rem; line-height:1.08; letter-spacing:-.035em; margin:8px 0 8px}
 .material-reader-meta{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 16px}
@@ -751,6 +768,9 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   .profile-avatar{width:28px; height:28px; font-size:.72rem}
   .profile-chip-name{font-size:.76rem}
   .profile-chip-sub{font-size:.5rem}
+  .dashboard-grid{grid-template-columns:1fr}
+  .dashboard-side{position:static; order:-1}
+  .planner-form{grid-template-columns:1fr}
   .profile-grid{grid-template-columns:1fr}
   .profile-editor{grid-template-columns:1fr}
   .profile-card-avatar{width:84px; height:84px}
@@ -763,6 +783,9 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   .game-actions{grid-template-columns:1fr}
   .coach-grid{grid-template-columns:1fr}
   .material-layout{grid-template-columns:1fr}
+  .material-layout{height:auto; min-height:0; overflow:visible}
+  .material-list{max-height:42dvh; border:1px solid var(--line); border-radius:var(--r-lg); padding:8px; background:var(--paper-2)}
+  .material-reader{height:auto; max-height:none; overflow:visible}
   .material-reader{padding:17px 16px 19px}
   .material-reader h2{font-size:1.35rem}
   .review-grid{grid-template-columns:repeat(4,1fr)}
@@ -775,20 +798,37 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 </style>
 </head>
 <body>
-<!-- DIVISION SELECT -->
-<div class="screen active" id="select" data-screen-label="Select">
+<!-- DASHBOARD -->
+<div class="screen active" id="select" data-screen-label="Dashboard">
   <div class="wrap select-wrap">
     <button class="profile-chip" id="profileChip" onclick="openProfile()" aria-label="Edit profile"></button>
     <header class="brand">
       <div class="eyebrow">Architect Registration Examination</div>
       <h1 class="brand-title">ARE&nbsp;<span>5.0</span></h1>
-      <p class="brand-sub">Adaptive practice across all six divisions.</p>
+      <p class="brand-sub">Your progress, profile, and exam-day study path.</p>
     </header>
 
-    <div class="overall" id="overallStat"></div>
-    <div class="coach-panel" id="coachPanel"></div>
-    <div class="game-panel" id="gamePanel"></div>
+    <div class="dashboard-grid">
+      <main class="dashboard-main">
+        <div class="overall" id="overallStat"></div>
+        <div class="planner-panel" id="examPlanner"></div>
+        <div class="coach-panel" id="coachPanel"></div>
+      </main>
+      <aside class="dashboard-side" id="dashboardProfile"></aside>
+    </div>
+  </div>
+</div>
 
+<!-- EXAM SETUP -->
+<div class="screen" id="exam" data-screen-label="Exam">
+  <div class="wrap tab-wrap exam-wrap">
+    <div class="tab-head">
+      <div>
+        <div class="eyebrow">Exam setup</div>
+        <h1 class="tab-title">Practice Session</h1>
+      </div>
+    </div>
+    <p class="tab-intro">Choose the division, session style, length, and difficulty for your next set.</p>
     <div class="section-label"><span>Choose a division</span><span class="rule"></span></div>
     <div class="div-grid" id="divGrid"></div>
 
@@ -883,7 +923,6 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
       </div>
     </div>
     <p class="tab-intro">Open the master cheat sheets by division, search a concept, and read before jumping back into questions.</p>
-    <div class="material-suggest" id="materialSuggestion"></div>
     <div class="material-toolbar" id="materialFilters"></div>
     <input id="materialSearch" class="fld search-fld" placeholder="Search concepts..." oninput="renderMaterials()" autocomplete="off">
     <div class="material-layout">
@@ -1095,9 +1134,13 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 <!-- BOTTOM TAB BAR -->
 <nav class="tab-bar" id="tabBar" aria-label="Primary">
   <div class="tab-bar-inner">
-    <button class="tab-btn" data-screen="select" onclick="switchTab('study')">
+    <button class="tab-btn" data-screen="select" onclick="switchTab('dashboard')">
+      <svg viewBox="0 0 24 24"><path d="M4 13h7V4H4zM13 20h7V4h-7zM4 20h7v-5H4z"/></svg>
+      <span class="tl">Dash</span>
+    </button>
+    <button class="tab-btn" data-screen="exam" onclick="switchTab('exam')">
       <svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5A1.5 1.5 0 0 1 20 20.5z"/></svg>
-      <span class="tl">Practice</span>
+      <span class="tl">Exam</span>
     </button>
     <button class="tab-btn" data-screen="materials" onclick="switchTab('materials')">
       <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v4h4M9 12h6M9 16h6"/></svg>
@@ -1110,14 +1153,6 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     <button class="tab-btn" data-screen="game" onclick="switchTab('game')">
       <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M5 6H3v1a3 3 0 0 0 4 2.8M19 6h2v1a3 3 0 0 1-4 2.8"/></svg>
       <span class="tl">Game</span>
-    </button>
-    <button class="tab-btn" data-screen="synonyms" onclick="switchTab('synonyms')">
-      <svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>
-      <span class="tl">Synonyms</span>
-    </button>
-    <button class="tab-btn" data-screen="mnemonics" onclick="switchTab('mnemonics')">
-      <svg viewBox="0 0 24 24"><path d="M9.5 3.5a4 4 0 0 0-3 6.6A3.5 3.5 0 0 0 8 16.8V19a1.5 1.5 0 0 0 3 0V4.8a1.5 1.5 0 0 0-1.5-1.3z"/><path d="M14.5 3.5a4 4 0 0 1 3 6.6A3.5 3.5 0 0 1 16 16.8V19a1.5 1.5 0 0 1-3 0V4.8a1.5 1.5 0 0 1 1.5-1.3z"/></svg>
-      <span class="tl">Mnemonics</span>
     </button>
   </div>
 </nav>
@@ -1208,6 +1243,7 @@ let session={div:'',qs:[],idx:0,correct:0,missed:[],results:[],mode:'practice',a
 let revealed=false, cataSet=new Set();
 let examTimer=null;
 const PROFILE_KEY='are_profile';
+const PLAN_KEY='are_exam_plan';
 let profilePhotoDraft='';
 let profileBannerDraft='';
 let materialDiv='ALL';
@@ -1247,7 +1283,7 @@ function loadBank(){
     BASE=cleanQuestionBank(Array.isArray(data)?data:(data.questions||[]));
     if(!BASE.length) throw new Error('Question bank is empty');
     GEN=getGenerated(); rebuildQBANK();
-    initGameDaily(); buildGrid(); renderOverall(); renderProfile(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
+    initGameDaily(); buildGrid(); renderDashboard(); renderGame(); refreshClearLink(); refreshPoolLink(); showScreen('select'); initA11y();
     setTimeout(()=>{overlay.style.opacity='0'; overlay.style.transition='opacity .4s'; setTimeout(()=>overlay.style.display='none',420);},220);
   }catch(e){
     overlay.innerHTML=`<div class="err-box">
@@ -1320,6 +1356,99 @@ function renderOverall(){
     <div class="ov-bar"><span style="width:${pct}%"></span></div>`;
 }
 
+function renderDashboard(){
+  renderOverall();
+  renderDashboardProfile();
+  renderExamPlanner();
+  renderCoach();
+  renderProfile();
+}
+function renderDashboardProfile(){
+  const host=document.getElementById('dashboardProfile'); if(!host) return;
+  const p=getProfile();
+  host.innerHTML=`<div class="profile-card dash-profile-card">${profileCardHTML(p)}</div>
+    <div class="dash-profile-actions"><button class="btn-secondary" onclick="openProfile()">Edit profile</button></div>`;
+}
+function defaultExamPlan(){ return {div:'',date:''}; }
+function cleanExamPlan(raw){
+  const p={...defaultExamPlan(),...(raw||{})};
+  p.div=DIV_ORDER.includes(p.div)?p.div:'';
+  p.date=/^\d{4}-\d{2}-\d{2}$/.test(String(p.date||''))?String(p.date):'';
+  return p;
+}
+function getExamPlan(){
+  try{return cleanExamPlan(JSON.parse(localStorage.getItem(PLAN_KEY)||'{}'));}catch(e){return defaultExamPlan();}
+}
+function saveExamPlan(plan){
+  try{localStorage.setItem(PLAN_KEY,JSON.stringify(cleanExamPlan(plan)));}catch(e){}
+}
+function todayMidnight(){
+  const d=new Date();
+  return new Date(d.getFullYear(),d.getMonth(),d.getDate());
+}
+function planDays(plan){
+  if(!plan||!plan.date) return null;
+  const p=String(plan.date).split('-').map(Number);
+  const target=new Date(p[0],p[1]-1,p[2]);
+  return Math.ceil((target-todayMidnight())/86400000);
+}
+function formatPlanDate(iso){
+  if(!iso) return '';
+  const p=String(iso).split('-').map(Number);
+  if(p.length!==3) return iso;
+  return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+}
+function planPhase(days){
+  if(days==null) return 'setup';
+  if(days<0) return 'past';
+  if(days<=3) return 'final';
+  if(days<=14) return 'sharpen';
+  if(days<=35) return 'build';
+  return 'base';
+}
+function planPhaseCopy(plan,days,readiness){
+  const div=plan.div||'your next division';
+  const phase=planPhase(days);
+  if(phase==='setup') return 'Set the division and date for your next real exam. The dashboard will turn your practice history into a study path.';
+  if(phase==='past') return 'That exam date has passed. Update it when you schedule the next division.';
+  if(phase==='final') return `${div} is almost here. Prioritize weak concepts, short mixed sets, and flagged-question review. Avoid starting brand-new material unless it keeps showing up as a miss.`;
+  if(phase==='sharpen') return `${div} is close. Alternate guide review with 10-question sets, and use exam mode every few days to rehearse pacing.`;
+  if(phase==='build') return `${div} is the priority. Build coverage now: read the weak guide concepts, then run focused sets until the misses stop repeating.`;
+  return `${div} is scheduled with room to build. Work broad coverage first, then tighten around weak topics as the date approaches.`;
+}
+function saveExamPlanFromForm(){
+  const div=(document.getElementById('examPlanDiv')||{}).value||'';
+  const date=(document.getElementById('examPlanDate')||{}).value||'';
+  saveExamPlan({div,date});
+  renderDashboard();
+}
+function clearExamPlan(){
+  try{localStorage.removeItem(PLAN_KEY);}catch(e){}
+  renderDashboard();
+}
+function renderExamPlanner(){
+  const host=document.getElementById('examPlanner'); if(!host) return;
+  const plan=getExamPlan();
+  const days=planDays(plan);
+  const s=getStats(), o=plan.div&&s[plan.div]?s[plan.div]:null;
+  const readiness=o&&o.answered?Math.round(o.correct/o.answered*100):0;
+  const title=plan.div&&plan.date?`${plan.div} on ${formatPlanDate(plan.date)}`:'Schedule your next exam';
+  const dayLabel=days==null?'not set':(days<0?'past':(days===0?'today':(days+' day'+(days===1?'':'s'))));
+  const options=['',...DIV_ORDER].map(d=>`<option value="${d}" ${plan.div===d?'selected':''}>${d?d+' · '+DIV_NAMES[d]:'Choose division'}</option>`).join('');
+  host.innerHTML=`<div class="planner-card">
+    <div class="planner-head">
+      <div><div class="coach-kicker">Exam day plan</div><div class="planner-title">${esc(title)}</div><div class="planner-sub">${esc(planPhaseCopy(plan,days,readiness))}</div></div>
+      <div class="planner-days"><b>${days==null?'--':Math.max(0,days)}</b>${esc(dayLabel)}</div>
+    </div>
+    <div class="planner-form">
+      <div><label class="fld-lbl">Division</label><select class="fld" id="examPlanDiv">${options}</select></div>
+      <div><label class="fld-lbl">Exam date</label><input class="fld" id="examPlanDate" type="date" value="${esc(plan.date)}"></div>
+      <button class="btn-save" onclick="saveExamPlanFromForm()">Save</button>
+    </div>
+    ${plan.div||plan.date?`<div class="study-action-row"><button class="btn-cancel" onclick="clearExamPlan()">Clear scheduled exam</button></div>`:''}
+  </div>`;
+}
+
 function studyGuides(){
   return typeof STUDY_GUIDES==='undefined'?[]:STUDY_GUIDES;
 }
@@ -1379,13 +1508,27 @@ function firstMaterialForDiv(div){
   return allMaterialItems().find(item=>guideMatchesDiv(item.guide,div))||allMaterialItems()[0]||null;
 }
 function studySuggestion(rec,weak,total,readiness){
+  const plan=getExamPlan();
+  const days=planDays(plan);
+  const planDiv=plan.div||'';
   const targets=studyTargets();
-  for(const t of targets){
-    const item=findMaterialForTopic(t.topic,t.div);
+  const orderedTargets=planDiv
+    ? [...targets.filter(t=>t.div===planDiv),...targets.filter(t=>t.div!==planDiv)]
+    : targets;
+  for(const t of orderedTargets){
+    const item=findMaterialForTopic(t.topic,planDiv||t.div);
     if(item) return {
-      title:`Read ${item.title}`,
-      sub:`Based on recent misses around ${t.topic}. Review the guide, then run a short ${t.div||rec.div} set.`,
+      title:`${planDiv||item.guide.divs[0]}: read ${item.title}`,
+      sub:`${planDiv&&days!=null?formatPlanCountdown(days)+' · ':''}Recent history points to ${t.topic}. Read it, then run a short ${planDiv||t.div||rec.div} set.`,
       item, label:'concept'
+    };
+  }
+  if(planDiv){
+    const item=firstMaterialForDiv(planDiv);
+    return {
+      title:`Build toward ${planDiv}`,
+      sub:`${days!=null?formatPlanCountdown(days)+' · ':''}${planPhaseCopy(plan,days,readiness)}`,
+      item, label:'scheduled'
     };
   }
   if(total){
@@ -1401,6 +1544,12 @@ function studySuggestion(rec,weak,total,readiness){
     sub:'The library is ready. After you complete exams, this box will point to the exact concepts that need review.',
     item:firstMaterialForDiv('PjM'), label:'start'
   };
+}
+function formatPlanCountdown(days){
+  if(days==null) return '';
+  if(days<0) return 'date passed';
+  if(days===0) return 'exam day';
+  return days+' day'+(days===1?'':'s')+' left';
 }
 function studySuggestionCardHTML(sug){
   if(!sug) return '';
@@ -1478,8 +1627,6 @@ function renderMaterials(){
   const host=document.getElementById('materialList'), reader=document.getElementById('materialReader');
   if(!host||!reader) return;
   renderMaterialFilters();
-  const sugHost=document.getElementById('materialSuggestion');
-  if(sugHost) sugHost.innerHTML=studySuggestionCardHTML(studySuggestion(recommendPlan(),weakTopics(4),getExams().length,0));
   const items=materialFilteredItems();
   if(!items.length){
     const guide=studyGuides().find(g=>guideMatchesDiv(g,materialDiv)&&!(g.items||[]).length);
@@ -1512,8 +1659,11 @@ function renderCoach(){
     <button class="btn-secondary" onclick="startCoachSession()">Run diagnostic</button>`;
     return;
   }
-  const dueMn=dueMnemonicCount();
   const seen=seenCount();
+  const plan=getExamPlan();
+  const days=planDays(plan);
+  const thirdValue=days==null?weak.length:Math.max(0,days);
+  const thirdLabel=days==null?'weak topics':'days left';
   const weakHtml=weak.length?`<div class="coach-list">${weak.map(w=>`<div class="coach-topic"><span>${esc(w.topic)}</span><span>${w.correct}/${w.answered}</span></div>`).join('')}</div>`:`<div class="ov-empty">No weak topics yet. Keep going and the pattern will sharpen.</div>`;
   host.innerHTML=`${studySuggestionCardHTML(suggestion)}<div class="coach-top">
     <div><div class="coach-kicker">Practice recommendation</div><div class="coach-title">${esc(rec.title)}</div><div class="coach-sub">${esc(rec.sub)}</div></div>
@@ -1522,7 +1672,7 @@ function renderCoach(){
   <div class="coach-grid">
     <div class="coach-cell"><div class="coach-v">${total}</div><div class="coach-l">answered</div></div>
     <div class="coach-cell"><div class="coach-v">${seen}</div><div class="coach-l">bank done</div></div>
-    <div class="coach-cell"><div class="coach-v">${dueMn}</div><div class="coach-l">cards due</div></div>
+    <div class="coach-cell"><div class="coach-v">${thirdValue}</div><div class="coach-l">${thirdLabel}</div></div>
   </div>
   ${weakHtml}
   <button class="btn-secondary" onclick="startCoachSession()">Start coach session</button>`;
@@ -1663,6 +1813,7 @@ function saveProfileForm(){
   const p=draftProfileFromForm();
   if(!saveProfile(p)) return;
   renderProfile();
+  renderDashboardProfile();
   renderCoach();
   closeProfile();
 }
@@ -2115,6 +2266,14 @@ function weakTopics(limit){
 }
 function recommendPlan(){
   const s=getStats();
+  const plan=getExamPlan();
+  if(plan.div){
+    const o=s[plan.div]||{answered:0,correct:0};
+    const pct=o.answered?o.correct/o.answered:0;
+    const weak=weakTopics(1)[0];
+    if(weak) return {div:plan.div,title:`Prepare for ${plan.div}: ${weak.topic}`,sub:'Your scheduled exam is driving this recommendation. Review the weak concept, then practice this division.'};
+    return {div:plan.div,title:`Prepare for ${plan.div}`,sub:'Your scheduled exam is driving this path. Build coverage with focused reading and timed practice.'};
+  }
   let best=null;
   DIV_ORDER.forEach(d=>{
     const o=s[d]||{answered:0,correct:0};
@@ -2332,7 +2491,7 @@ function restartSame(){
   }
   startSession();
 }
-function goSelect(){ stopExamTimer(); buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('select'); }
+function goSelect(){ stopExamTimer(); buildGrid(); renderDashboard(); renderGame(); refreshPoolLink(); selDiv=null; updateStartBtn(); document.querySelectorAll('.div-card').forEach(c=>c.classList.remove('selected')); showScreen('exam'); }
 function confirmExit(){ if(confirm(session.mode==='exam'?'Exit this exam? Your unsent answers will be lost.':'Exit this session? Your progress on these questions is saved.')) goSelect(); }
 function startExamTimer(){ stopExamTimer(); updateTimerChip(); examTimer=setInterval(()=>{ session.secondsLeft=Math.max(0,(session.secondsLeft||0)-1); updateTimerChip(); if(session.secondsLeft<=0){ stopExamTimer(); alert('Time is up. Your exam will be scored now.'); showScore(); } },1000); }
 function stopExamTimer(){ if(examTimer){ clearInterval(examTimer); examTimer=null; } const t=document.getElementById('qTimer'); if(t) t.hidden=true; }
@@ -2719,7 +2878,7 @@ function clearExams(){
   const n=getExams().length;
   if(!n) return;
   if(!confirm('Delete all '+n+' saved exam'+(n===1?'':'s')+'? Your mastery and question history stay intact.')) return;
-  localStorage.removeItem('are_exams'); renderScores();
+  localStorage.removeItem('are_exams'); renderScores(); renderDashboard();
 }
 
 /* ── Stats ──────────────────────────────────────────────────── */
@@ -2748,14 +2907,14 @@ function updateTopicStats(topic,correct){
 function resetProgress(){
   if(!confirm('Reset all mastery, topic progress, and your seen-question history? This cannot be undone.')) return;
   localStorage.removeItem('are_stats'); localStorage.removeItem('are_topic_stats'); localStorage.removeItem('are_seen');
-  buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderDashboard(); renderGame(); refreshPoolLink(); updateStartBtn();
 }
 function resetPool(){
   const n=seenCount();
   if(!n){ alert('You haven\u2019t completed any questions yet \u2014 nothing to reset.'); return; }
   if(!confirm('Make all '+n+' completed question'+(n===1?'':'s')+' available again? Your mastery stats stay intact.')) return;
   localStorage.removeItem('are_seen');
-  renderCoach(); refreshPoolLink(); updateStartBtn();
+  renderDashboard(); refreshPoolLink(); updateStartBtn();
 }
 function refreshPoolLink(){
   const l=document.getElementById('resetPoolLink'); if(!l) return;
@@ -2788,7 +2947,7 @@ function downloadFile(name,text,type){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
-const PROGRESS_KEYS=['are_stats','are_topic_stats','are_seen','are_exams','are_generated','are_synonyms','are_mnemonics','are_mn_review','are_profile','are_gamification'];
+const PROGRESS_KEYS=['are_stats','are_topic_stats','are_seen','are_exams','are_generated','are_synonyms','are_mnemonics','are_mn_review','are_profile','are_exam_plan','are_gamification'];
 function exportProgress(){
   const data={app:'ARE 5.0 Practice',version:2,exportedAt:new Date().toISOString(),items:{}};
   PROGRESS_KEYS.forEach(k=>{ const v=localStorage.getItem(k); if(v!=null) data.items[k]=v; });
@@ -2804,7 +2963,7 @@ function importProgressFile(input){
       const items=data&&data.items;
       if(!items||typeof items!=='object') throw new Error('That file does not look like ARE progress.');
       PROGRESS_KEYS.forEach(k=>{ if(Object.prototype.hasOwnProperty.call(items,k)) localStorage.setItem(k,String(items[k])); });
-      GEN=getGenerated(); rebuildQBANK(); buildGrid(); renderOverall(); renderProfile(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); renderScores(); renderMaterials();
+      GEN=getGenerated(); rebuildQBANK(); buildGrid(); renderDashboard(); renderGame(); refreshClearLink(); refreshPoolLink(); renderScores(); renderMaterials();
       alert('Progress imported.');
     }catch(e){ alert('Could not import progress.\n\n'+e.message); }
   };
@@ -2856,7 +3015,7 @@ function flashExport(msg){
 function clearGenerated(){
   if(!GEN.length) return;
   if(!confirm('Remove all '+GEN.length+' AI-generated questions? Your original bank stays intact.')) return;
-  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshClearLink();
+  GEN=[]; saveGenerated(GEN); rebuildQBANK(); buildGrid(); renderDashboard(); renderGame(); refreshClearLink();
 }
 
 let genState=null;
@@ -3035,7 +3194,7 @@ function finishGen(){
   const added=genState?genState.added:0;
   const divs=genState?genState.divs:[];
   if(genState) genState.running=false;
-  buildGrid(); renderOverall(); renderCoach(); renderGame(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
+  buildGrid(); renderDashboard(); renderGame(); refreshClearLink(); refreshPoolLink(); updateStartBtn();
   document.getElementById('genStatus').textContent=added>0
     ? `Added ${added} new question${added===1?'':'s'} across ${divs.join(', ')}.`
     : 'Could not generate questions just now \u2014 please try again in a moment.';
@@ -3416,7 +3575,7 @@ function flipMn(id){ const c=document.querySelector('.mn-card[data-id="'+id+'"]'
 window.addEventListener('resize',()=>{ if(document.getElementById('mnemonics').classList.contains('active')) sizeMnCards(); });
 
 /* ── Utility ────────────────────────────────────────────────── */
-const NAV_SCREENS=['select','materials','scores','game','synonyms','mnemonics'];
+const NAV_SCREENS=['select','exam','materials','scores','game'];
 let lastDialogFocus=null;
 function initA11y(){
   document.querySelectorAll('.qc-btn,.diff-btn,.gen-diff-btn,.gen-count-btn,.mode-btn').forEach(b=>b.setAttribute('aria-pressed',(b.classList.contains('selected')||b.classList.contains('on'))?'true':'false'));
@@ -3456,12 +3615,12 @@ function showScreen(id){
   }
 }
 function switchTab(tab){
-  if(tab==='scores'){ showScreen('scores'); renderScores(); }
+  if(tab==='dashboard'){ showScreen('select'); renderDashboard(); }
+  else if(tab==='exam'){ showScreen('exam'); buildGrid(); updateStartBtn(); }
+  else if(tab==='scores'){ showScreen('scores'); renderScores(); }
   else if(tab==='materials'){ showScreen('materials'); renderMaterials(); }
   else if(tab==='game'){ showScreen('game'); renderGame(); }
-  else if(tab==='synonyms'){ showScreen('synonyms'); renderSyn(); }
-  else if(tab==='mnemonics'){ showScreen('mnemonics'); renderMn(); }
-  else { renderGame(); showScreen('select'); }
+  else { renderDashboard(); showScreen('select'); }
 }
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function trimQ(s){s=String(s||''); return s.length>72?s.slice(0,72).trim()+'\u2026':s;}
