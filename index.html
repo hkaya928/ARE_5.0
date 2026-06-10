@@ -71,7 +71,6 @@ button{font-family:inherit; color:inherit; cursor:pointer}
 .dashboard-main,.dashboard-side{min-width:0}
 .dashboard-side{position:sticky; top:max(24px,env(safe-area-inset-top)); display:flex; flex-direction:column; gap:12px}
 .dash-profile-card{margin:0}
-.dash-profile-actions{display:grid; gap:9px}
 .planner-panel{margin:0 0 30px}
 .planner-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:17px 18px; box-shadow:var(--shadow-card)}
 .planner-head{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:12px}
@@ -79,8 +78,10 @@ button{font-family:inherit; color:inherit; cursor:pointer}
 .planner-sub{font-size:.86rem; color:var(--ink-soft); line-height:1.45; margin-top:5px}
 .planner-days{flex-shrink:0; min-width:76px; text-align:right; font-family:var(--mono); color:var(--muted); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase}
 .planner-days b{display:block; color:var(--ink); font-size:1.7rem; line-height:1; letter-spacing:-.04em}
-.planner-form{display:grid; grid-template-columns:1fr 1fr auto; gap:9px; align-items:end}
-.planner-form .fld{margin-bottom:0}
+.planner-form{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto; gap:9px; align-items:end}
+.planner-form>*{min-width:0}
+.planner-form .fld{margin-bottom:0; min-width:0}
+.planner-form .btn-save{width:auto; min-width:88px; padding:0 18px}
 .exam-wrap{max-width:880px}
 
 .overall{margin:26px 0 30px}
@@ -302,7 +303,7 @@ button{font-family:inherit; color:inherit; cursor:pointer}
 .bank-links{display:flex; flex-wrap:wrap; gap:16px 26px; justify-content:center; margin-top:28px}
 .bank-links .reset-link{margin:0}
 
-/* ── Export for GitHub ──────────────────────────────────────── */
+/* ── Shareable HTML export ──────────────────────────────────── */
 .export-btn{display:flex; align-items:center; gap:15px; width:100%; background:var(--ink); border:1px solid var(--ink); border-radius:var(--r-lg); padding:16px 18px; margin-top:12px; text-align:left; box-shadow:0 12px 28px -16px rgba(27,26,22,.7); transition:transform .14s, box-shadow .2s}
 @media (hover:hover){.export-btn:hover{transform:translateY(-2px); box-shadow:0 16px 34px -16px rgba(27,26,22,.8)}}
 .export-btn:active{transform:translateY(0)}
@@ -639,9 +640,8 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .profile-banner{height:132px; background:linear-gradient(135deg,#d9c7a0,#e9dfcc 45%,#cad7c6); background-size:cover; background-position:center; border-bottom:1px solid var(--line)}
 .profile-banner.has-img{background-color:var(--paper-2)}
 .profile-card-body{position:relative; padding:0 18px 18px}
-.profile-card-avatar{position:relative; width:92px; height:92px; margin-top:-40px; border:7px solid var(--card); border-radius:28px; overflow:hidden; background:var(--accent-soft); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.35rem; font-weight:900; box-shadow:0 10px 24px -18px rgba(27,26,22,.5)}
+.profile-card-avatar{position:relative; width:92px; height:92px; margin-top:-40px; border:7px solid var(--card); border-radius:50%; overflow:hidden; background:var(--accent-soft); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.35rem; font-weight:900; box-shadow:0 10px 24px -18px rgba(27,26,22,.5)}
 .profile-card-avatar img{width:100%; height:100%; object-fit:cover; display:block}
-.profile-status-dot{position:absolute; right:2px; bottom:3px; width:24px; height:24px; border:5px solid var(--card); border-radius:50%; background:var(--correct)}
 .profile-card-name{margin-top:8px; font-size:1.55rem; line-height:1; font-weight:900; letter-spacing:-.035em}
 .profile-card-real{font-family:var(--mono); color:var(--muted); font-size:.7rem; letter-spacing:.04em; margin-top:6px}
 .profile-badge-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px}
@@ -861,11 +861,11 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
     <div class="section-label" style="margin-top:32px"><span>Question bank</span><span class="rule"></span></div>
     <button class="gen-cta" onclick="openGen()">
       <span class="gen-cta-icon">+</span>
-      <span class="gen-cta-main"><span class="gen-cta-title">Generate new questions</span><span class="gen-cta-sub">Write 100 fresh ARE-style questions for any division</span></span>
+      <span class="gen-cta-main"><span class="gen-cta-title">Generate new questions</span><span class="gen-cta-sub">Works in the AI-enabled app; saved questions practice anywhere</span></span>
       <span class="gen-cta-arr">&rarr;</span>
     </button>
     <div class="bank-links">
-      <button class="reset-link js-export" id="exportBtn" onclick="exportSite()" hidden>Export for GitHub</button>
+      <button class="reset-link js-export" id="exportBtn" onclick="exportSite()" hidden>Export shareable file</button>
       <button class="reset-link" onclick="exportProgress()">Export progress</button>
       <button class="reset-link" onclick="document.getElementById('progressImport').click()">Import progress</button>
       <input class="file-input" id="progressImport" type="file" accept="application/json,.json" onchange="importProgressFile(this)">
@@ -1366,8 +1366,7 @@ function renderDashboard(){
 function renderDashboardProfile(){
   const host=document.getElementById('dashboardProfile'); if(!host) return;
   const p=getProfile();
-  host.innerHTML=`<div class="profile-card dash-profile-card">${profileCardHTML(p)}</div>
-    <div class="dash-profile-actions"><button class="btn-secondary" onclick="openProfile()">Edit profile</button></div>`;
+  host.innerHTML=`<div class="profile-card dash-profile-card">${profileCardHTML(p)}</div>`;
 }
 function defaultExamPlan(){ return {div:'',date:''}; }
 function cleanExamPlan(raw){
@@ -1551,14 +1550,18 @@ function formatPlanCountdown(days){
   if(days===0) return 'exam day';
   return days+' day'+(days===1?'':'s')+' left';
 }
-function studySuggestionCardHTML(sug){
-  if(!sug) return '';
-  const btn=sug.item
+function studyPathCardHTML(sug,rec,readiness,total){
+  const readBtn=sug&&sug.item
     ? `<button class="btn-secondary" onclick="openMaterial('${esc(sug.item.id)}')">Read concept</button>`
     : `<button class="btn-secondary" onclick="switchTab('materials')">Open library</button>`;
+  const practiceBtn=`<button class="btn-secondary" onclick="startCoachSession()">${total?'Start coach session':'Run diagnostic'}</button>`;
+  const title=total ? ((sug&&sug.title)||rec.title) : 'Start with a 10-question diagnostic.';
+  const sub=total
+    ? `${sug&&sug.sub?sug.sub+' ':''}${rec.title}: ${rec.sub}`
+    : 'Once you finish a few sessions, this box will point you to guide concepts and practice sets from your exam history.';
   return `<div class="coach-top">
-    <div><div class="coach-kicker">Study suggestion</div><div class="coach-title">${esc(sug.title)}</div><div class="coach-sub">${esc(sug.sub)}</div></div>
-    <div class="study-action-row">${btn}</div>
+    <div><div class="coach-kicker">Study path</div><div class="coach-title">${esc(title)}</div><div class="coach-sub">${esc(sub)}</div><div class="study-action-row">${readBtn}${practiceBtn}</div></div>
+    <div class="coach-score"><b>${total?readiness:0}</b>ready</div>
   </div>`;
 }
 function materialCountForDiv(div){
@@ -1652,11 +1655,7 @@ function renderCoach(){
   const rec=recommendPlan();
   const suggestion=studySuggestion(rec,weak,total,readiness);
   if(!total){
-    host.innerHTML=`${studySuggestionCardHTML(suggestion)}<div class="coach-top">
-      <div><div class="coach-kicker">Next best move</div><div class="coach-title">Start with a 10-question diagnostic.</div><div class="coach-sub">Once you finish a few sessions, this box will point you to the exact guide concepts your exam history says to review.</div></div>
-      <div class="coach-score"><b>0</b>ready</div>
-    </div>
-    <button class="btn-secondary" onclick="startCoachSession()">Run diagnostic</button>`;
+    host.innerHTML=studyPathCardHTML(suggestion,rec,readiness,total);
     return;
   }
   const seen=seenCount();
@@ -1665,17 +1664,13 @@ function renderCoach(){
   const thirdValue=days==null?weak.length:Math.max(0,days);
   const thirdLabel=days==null?'weak topics':'days left';
   const weakHtml=weak.length?`<div class="coach-list">${weak.map(w=>`<div class="coach-topic"><span>${esc(w.topic)}</span><span>${w.correct}/${w.answered}</span></div>`).join('')}</div>`:`<div class="ov-empty">No weak topics yet. Keep going and the pattern will sharpen.</div>`;
-  host.innerHTML=`${studySuggestionCardHTML(suggestion)}<div class="coach-top">
-    <div><div class="coach-kicker">Practice recommendation</div><div class="coach-title">${esc(rec.title)}</div><div class="coach-sub">${esc(rec.sub)}</div></div>
-    <div class="coach-score"><b>${readiness}</b>ready</div>
-  </div>
+  host.innerHTML=`${studyPathCardHTML(suggestion,rec,readiness,total)}
   <div class="coach-grid">
     <div class="coach-cell"><div class="coach-v">${total}</div><div class="coach-l">answered</div></div>
     <div class="coach-cell"><div class="coach-v">${seen}</div><div class="coach-l">bank done</div></div>
     <div class="coach-cell"><div class="coach-v">${thirdValue}</div><div class="coach-l">${thirdLabel}</div></div>
   </div>
-  ${weakHtml}
-  <button class="btn-secondary" onclick="startCoachSession()">Start coach session</button>`;
+  ${weakHtml}`;
 }
 
 function defaultProfile(){
@@ -1736,7 +1731,7 @@ function profileCardHTML(profile){
   const roles=p.roles.map((r,i)=>`<span class="profile-badge"><i style="background:${roleColor(i)}"></i>${esc(r)}</span>`).join('');
   return `<div class="profile-banner${p.banner?' has-img':''}"${bannerStyle}></div>
     <div class="profile-card-body">
-      <div class="profile-card-avatar">${avatar}<span class="profile-status-dot"></span></div>
+      <div class="profile-card-avatar">${avatar}</div>
       <div class="profile-status-pill">${esc(p.status)}</div>
       <div class="profile-card-name">${esc(p.name||'Your Name')}</div>
       <div class="profile-card-real">${realLine}</div>
@@ -2934,7 +2929,7 @@ function refreshClearLink(){
   }
   const x=document.getElementById('exportBtn');
   if(x){
-    if(GEN.length){ x.hidden=false; x.textContent='Export for GitHub'; }
+    if(GEN.length){ x.hidden=false; x.textContent='Export shareable file'; }
     else x.hidden=true;
   }
 }
@@ -3040,7 +3035,7 @@ function openGen(){
   const online=!!(window.claude&&window.claude.complete);
   document.getElementById('genNote').innerHTML=online
     ? 'Built in small batches &middot; takes a minute or two &middot; stop anytime and keep what&rsquo;s made'
-    : 'Note: generation needs an internet connection and won&rsquo;t run in the offline downloaded file.';
+    : 'Note: live generation only works inside the AI-enabled app. Offline/shared copies can practice saved questions, but cannot create new ones.';
   openDialog('genOverlay');
 }
 function closeGen(){
@@ -3154,7 +3149,7 @@ function updateGenProgress(msg){
 function stopGen(){ if(genState){ genState.running=false; document.getElementById('genStatus').textContent='Finishing the current set\u2026'; } }
 async function startGeneration(){
   if(!(window.claude&&window.claude.complete)){
-    document.getElementById('genGrid').innerHTML='<div class="gen-err" style="grid-column:1/-1">Live generation needs an internet connection, so it isn\u2019t available in the offline downloaded file. Open the app online to generate questions.</div>';
+    document.getElementById('genGrid').innerHTML='<div class="gen-err" style="grid-column:1/-1">Live generation only works inside the AI-enabled app. This offline/shared file can practice saved questions, but it cannot create new ones by itself.</div>';
     return;
   }
   const divs=[...genSel].filter(d=>DIV_ORDER.includes(d));
@@ -3199,7 +3194,7 @@ function finishGen(){
     ? `Added ${added} new question${added===1?'':'s'} across ${divs.join(', ')}.`
     : 'Could not generate questions just now \u2014 please try again in a moment.';
   document.getElementById('genActions').innerHTML=(added>0
-    ? '<button class="btn-secondary js-export" onclick="exportSite()">Export for GitHub</button>'
+    ? '<button class="btn-secondary js-export" onclick="exportSite()">Export shareable file</button>'
     : '')+'<button class="btn-primary" onclick="closeGen()"><span>Done</span></button>';
 }
 
