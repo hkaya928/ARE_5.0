@@ -602,7 +602,7 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .review-pill{font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); background:var(--card); border-radius:99px; padding:7px 11px}
 .bank-links .file-input{display:none}
 .mn-card.due .mn-badge{color:var(--wrong); background:var(--wrong-soft); border-color:var(--wrong-line)}
-.profile-chip{position:absolute; top:max(34px,env(safe-area-inset-top)); right:22px; display:flex; align-items:center; gap:10px; min-height:44px; max-width:170px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:7px 10px 7px 8px; box-shadow:var(--shadow-card); text-align:left; transition:border-color .15s, transform .12s, box-shadow .2s}
+.profile-chip{position:absolute; top:calc(max(34px,env(safe-area-inset-top)) + 30px); right:22px; display:flex; align-items:center; gap:10px; min-height:44px; max-width:170px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:7px 10px 7px 8px; box-shadow:var(--shadow-card); text-align:left; transition:border-color .15s, transform .12s, box-shadow .2s}
 @media (hover:hover){.profile-chip:hover{border-color:var(--ink); transform:translateY(-1px); box-shadow:var(--shadow-lift)}}
 .profile-avatar,.assistant-avatar{flex-shrink:0; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--accent-soft); border:1px solid var(--accent-line); color:var(--accent); font-weight:800; font-size:.82rem}
 .profile-avatar img{width:100%; height:100%; object-fit:cover; display:block}
@@ -734,8 +734,11 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   @keyframes evoGlow{0%{transform:scale(.96); box-shadow:0 0 0 rgba(91,134,197,0)}45%{transform:scale(1.04); box-shadow:0 0 0 8px rgba(91,134,197,.12)}100%{transform:scale(1); box-shadow:var(--shadow-card)}}
 }
 @media (max-width:620px){
-  .brand{padding-right:0}
-  .profile-chip{position:static; margin:0 0 20px auto}
+  .brand{padding-right:150px}
+  .profile-chip{position:absolute; top:calc(max(34px,env(safe-area-inset-top)) + 46px); right:22px; margin:0; max-width:142px; min-height:40px; gap:8px; padding:6px 8px 6px 7px}
+  .profile-avatar{width:28px; height:28px; font-size:.72rem}
+  .profile-chip-name{font-size:.76rem}
+  .profile-chip-sub{font-size:.5rem}
   .profile-grid{grid-template-columns:1fr}
   .profile-editor{grid-template-columns:1fr}
   .profile-card-avatar{width:84px; height:84px}
@@ -749,6 +752,10 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   .coach-grid{grid-template-columns:1fr}
   .review-grid{grid-template-columns:repeat(4,1fr)}
   .q-timer{display:none}
+}
+@media (max-width:380px){
+  .brand{padding-right:124px}
+  .profile-chip{max-width:116px; gap:7px}
 }
 </style>
 </head>
