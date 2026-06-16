@@ -701,6 +701,8 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .profile-banner{height:132px; background:var(--profile-banner); background-size:cover; background-position:center; border-bottom:1px solid var(--line)}
 .profile-banner.has-img{background-color:var(--paper-2)}
 .profile-card-body{position:relative; padding:0 18px 18px}
+.profile-card-main{display:grid; grid-template-columns:minmax(0,1fr) minmax(132px,.7fr); gap:15px; align-items:start}
+.profile-identity{min-width:0}
 .profile-card-avatar{position:relative; width:92px; height:92px; margin-top:-40px; border:7px solid var(--card); border-radius:50%; overflow:hidden; background:var(--accent-soft); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.35rem; font-weight:900; box-shadow:0 10px 24px -18px rgba(27,26,22,.5)}
 .profile-card-avatar img{width:100%; height:100%; object-fit:cover; display:block}
 .profile-card-name{margin-top:8px; font-size:1.55rem; line-height:1; font-weight:900; letter-spacing:-.035em}
@@ -712,11 +714,32 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
 .profile-rank:before{content:""; width:18px; height:18px; border-radius:6px; background:var(--accent-soft); border:1px solid var(--accent-line)}
 .profile-bio{margin-top:13px; color:var(--ink-soft); line-height:1.45; font-size:.92rem}
 .profile-status-pill{margin-top:14px; display:inline-flex; max-width:100%; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:12px 15px; color:var(--ink-soft); line-height:1.35}
+.profile-real-panel{margin-top:14px; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-md); padding:11px; min-width:0}
+.profile-real-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:9px}
+.profile-real-title{font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.profile-real-count{font-family:var(--mono); font-size:.58rem; color:var(--accent); white-space:nowrap}
+.profile-real-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.profile-real-pill{min-width:0; border:1px solid var(--line); border-radius:9px; background:var(--card); padding:7px 7px 6px; display:flex; flex-direction:column; gap:2px}
+.profile-real-pill b{font-family:var(--mono); font-size:.68rem; line-height:1; color:var(--ink)}
+.profile-real-pill span{font-family:var(--mono); font-size:.5rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.profile-real-pill.pass{border-color:var(--correct-line); background:var(--correct-soft)}
+.profile-real-pill.pass span{color:var(--correct)}
+.profile-real-pill.fail{border-color:var(--wrong-line); background:var(--wrong-soft)}
+.profile-real-pill.fail span{color:var(--wrong)}
 .profile-editor{display:grid; grid-template-columns:1fr 1fr; gap:10px}
 .profile-editor .wide{grid-column:1/-1}
 .profile-media-actions{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:12px 0 16px}
 .profile-help{font-size:.76rem; color:var(--muted); line-height:1.45; margin:-2px 0 10px}
 .profile-section-title{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:18px 0 10px}
+.real-exam-editor{display:flex; flex-direction:column; gap:8px; margin:2px 0 16px}
+.real-exam-row{display:grid; grid-template-columns:54px minmax(0,1fr); gap:8px; align-items:center}
+.real-exam-code{font-family:var(--mono); font-size:.75rem; font-weight:800; color:var(--ink)}
+.real-exam-toggle{display:grid; grid-template-columns:repeat(3,1fr); gap:5px}
+.real-exam-toggle button{min-height:34px; border:1px solid var(--line); background:var(--card); border-radius:8px; color:var(--ink-soft); font-size:.7rem; font-weight:800; transition:border-color .15s, color .15s, background .15s, box-shadow .15s}
+@media (hover:hover){.real-exam-toggle button:hover{border-color:var(--line-2); color:var(--ink)}}
+.real-exam-toggle button.on{border-color:var(--ink); color:var(--ink); box-shadow:0 0 0 1px var(--ink)}
+.real-exam-toggle button[data-status="pass"].on{border-color:var(--correct-line); color:var(--correct); background:var(--correct-soft); box-shadow:none}
+.real-exam-toggle button[data-status="fail"].on{border-color:var(--wrong-line); color:var(--wrong); background:var(--wrong-soft); box-shadow:none}
 .theme-choice{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:2px 0 16px}
 .theme-btn{min-height:48px; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); color:var(--ink-soft); font-weight:800; font-size:.82rem; transition:border-color .15s, color .15s, box-shadow .15s, transform .12s}
 @media (hover:hover){.theme-btn:hover{border-color:var(--line-2); transform:translateY(-1px)}}
@@ -847,8 +870,12 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
   .dashboard-grid{grid-template-columns:1fr}
   .dashboard-side{position:static; order:-1}
   .planner-form{grid-template-columns:1fr}
+  .profile-card-main{grid-template-columns:1fr}
+  .profile-real-panel{margin-top:12px}
+  .profile-real-grid{grid-template-columns:repeat(3,1fr)}
   .profile-grid{grid-template-columns:1fr}
   .profile-editor{grid-template-columns:1fr}
+  .real-exam-row{grid-template-columns:1fr}
   .profile-card-avatar{width:84px; height:84px}
   .profile-banner{height:116px}
   .avatar-row{grid-template-columns:1fr}
@@ -1188,6 +1215,8 @@ select.fld{appearance:none; -webkit-appearance:none; background-image:url("data:
         <div class="profile-help">Separate roles with commas. These appear as small chips on your profile card.</div>
       </div>
     </div>
+    <div class="profile-section-title">Real ARE exams</div>
+    <div class="real-exam-editor" id="realExamEditor"></div>
     <div class="profile-section-title">Appearance</div>
     <div class="theme-choice" role="group" aria-label="Appearance theme">
       <button class="theme-btn" data-theme-option="light" onclick="setTheme('light')" type="button"><span class="theme-dot light"></span>Light</button>
@@ -1329,6 +1358,7 @@ const PLAN_KEY='are_exam_plan';
 const THEME_KEY='are_theme';
 let profilePhotoDraft='';
 let profileBannerDraft='';
+let realExamDraft={};
 let materialDiv='ALL';
 let materialActiveId='';
 const MATERIAL_DIVS=['ALL','PcM','PjM','PA','PPD','PDD','CE'];
@@ -1843,7 +1873,20 @@ function renderCoach(){
 }
 
 function defaultProfile(){
-  return {name:'',realName:'',handle:'',title:'ARE Candidate',rank:'ARE Candidate',status:'Ready to study.',bio:'',roles:['ARE Candidate','Self Study'],photo:'',banner:''};
+  return {name:'',realName:'',handle:'',title:'ARE Candidate',rank:'ARE Candidate',status:'Ready to study.',bio:'',roles:['ARE Candidate','Self Study'],photo:'',banner:'',realExams:defaultRealExams()};
+}
+function defaultRealExams(){
+  const out={}; DIV_ORDER.forEach(d=>out[d]='open'); return out;
+}
+function cleanRealExams(raw){
+  const out=defaultRealExams();
+  if(raw&&typeof raw==='object'){
+    DIV_ORDER.forEach(d=>{
+      const v=String(raw[d]||'').toLowerCase();
+      out[d]=(v==='pass'||v==='fail'||v==='open')?v:'open';
+    });
+  }
+  return out;
 }
 function cleanProfile(raw){
   const d=defaultProfile(), p={...d,...(raw||{})};
@@ -1859,6 +1902,7 @@ function cleanProfile(raw){
   if(!p.roles.length) p.roles=[...d.roles];
   p.photo=String(p.photo||'');
   p.banner=String(p.banner||'');
+  p.realExams=cleanRealExams(p.realExams);
   return p;
 }
 function getProfile(){
@@ -1885,6 +1929,17 @@ function profileHandleText(profile){
 function roleColor(i){
   return ['#b65ad8','#2cc978','#2f87b8','#3da4e8','#c9953a','#7d83d4','#5f9f76','#d96f5b'][i%8];
 }
+function realExamLabel(status){
+  return status==='pass'?'Passed':status==='fail'?'Not passed':'Not yet';
+}
+function realExamPanelHTML(realExams){
+  const data=cleanRealExams(realExams);
+  const passed=DIV_ORDER.filter(d=>data[d]==='pass').length;
+  return `<div class="profile-real-panel">
+    <div class="profile-real-head"><div class="profile-real-title">Real ARE</div><div class="profile-real-count">${passed}/6 passed</div></div>
+    <div class="profile-real-grid">${DIV_ORDER.map(d=>`<div class="profile-real-pill ${esc(data[d])}"><b>${esc(d)}</b><span>${esc(realExamLabel(data[d]))}</span></div>`).join('')}</div>
+  </div>`;
+}
 function profileAvatarHTML(profile,cls){
   const p=cleanProfile(profile);
   const klass=cls||'profile-avatar';
@@ -1900,13 +1955,18 @@ function profileCardHTML(profile){
   const roles=p.roles.map((r,i)=>`<span class="profile-badge"><i style="background:${roleColor(i)}"></i>${esc(r)}</span>`).join('');
   return `<div class="profile-banner${p.banner?' has-img':''}"${bannerStyle}></div>
     <div class="profile-card-body">
-      <div class="profile-card-avatar">${avatar}</div>
-      <div class="profile-status-pill">${esc(p.status)}</div>
-      <div class="profile-card-name">${esc(p.name||'Your Name')}</div>
-      <div class="profile-card-real">${realLine}</div>
-      <div class="profile-rank">${esc(p.rank)}</div>
-      ${p.bio?`<div class="profile-bio">${esc(p.bio)}</div>`:''}
-      <div class="profile-badge-row">${roles}</div>
+      <div class="profile-card-main">
+        <div class="profile-identity">
+          <div class="profile-card-avatar">${avatar}</div>
+          <div class="profile-status-pill">${esc(p.status)}</div>
+          <div class="profile-card-name">${esc(p.name||'Your Name')}</div>
+          <div class="profile-card-real">${realLine}</div>
+          <div class="profile-rank">${esc(p.rank)}</div>
+          ${p.bio?`<div class="profile-bio">${esc(p.bio)}</div>`:''}
+          <div class="profile-badge-row">${roles}</div>
+        </div>
+        ${realExamPanelHTML(p.realExams)}
+      </div>
     </div>`;
 }
 function renderProfile(){
@@ -1924,6 +1984,28 @@ function profileFormValue(id){
   const el=document.getElementById(id);
   return el?el.value:'';
 }
+function renderRealExamEditor(){
+  const host=document.getElementById('realExamEditor'); if(!host) return;
+  const data=cleanRealExams(realExamDraft);
+  const opts=[
+    ['open','Not yet'],
+    ['pass','Passed'],
+    ['fail','Not passed']
+  ];
+  host.innerHTML=DIV_ORDER.map(d=>`<div class="real-exam-row">
+    <div class="real-exam-code">${esc(d)}</div>
+    <div class="real-exam-toggle" role="group" aria-label="${esc(d)} real exam status">
+      ${opts.map(([status,label])=>`<button type="button" data-status="${status}" class="${data[d]===status?'on':''}" aria-pressed="${data[d]===status?'true':'false'}" onclick="setRealExamStatus('${d}','${status}')">${esc(label)}</button>`).join('')}
+    </div>
+  </div>`).join('');
+}
+function setRealExamStatus(div,status){
+  if(!DIV_ORDER.includes(div)) return;
+  realExamDraft=cleanRealExams(realExamDraft);
+  realExamDraft[div]=(status==='pass'||status==='fail'||status==='open')?status:'open';
+  renderRealExamEditor();
+  updateProfilePreview();
+}
 function draftProfileFromForm(){
   return cleanProfile({
     name:profileFormValue('profileName'),
@@ -1935,7 +2017,8 @@ function draftProfileFromForm(){
     bio:profileFormValue('profileBio'),
     roles:profileFormValue('profileRoles'),
     photo:profilePhotoDraft,
-    banner:profileBannerDraft
+    banner:profileBannerDraft,
+    realExams:realExamDraft
   });
 }
 function renderProfilePhotoPreview(profile){
@@ -1961,6 +2044,7 @@ function populateProfileForm(){
   const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.value=v; };
   profilePhotoDraft=p.photo||'';
   profileBannerDraft=p.banner||'';
+  realExamDraft=cleanRealExams(p.realExams);
   set('profileName',p.name);
   set('profileHandle',p.handle);
   set('profileRealName',p.realName);
@@ -1969,6 +2053,7 @@ function populateProfileForm(){
   set('profileBio',p.bio);
   set('profileRoles',p.roles.join(', '));
   applyTheme(getTheme());
+  renderRealExamEditor();
   initProfileFormEvents();
   updateProfilePreview();
 }
