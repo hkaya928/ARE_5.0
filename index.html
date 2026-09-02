@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" data-om-id="ab99f628:5">
 <meta name="apple-mobile-web-app-title" content="ARE 5.0" data-om-id="ab99f628:6">
 <meta name="mobile-web-app-capable" content="yes" data-om-id="ab99f628:7">
-<!-- Single-file build 2026-09-02 15:05 — private study copy, do not publish publicly -->
+<!-- Single-file build 2026-09-02 15:59 — private study copy, do not publish publicly -->
 <title>ARE 5.0 — Study System</title>
 <script>
 try{
@@ -3340,6 +3340,21 @@ try{
 .au-voice-pick:focus-visible,
 .au-voice-try:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .au-voice-more { margin-bottom: var(--sp-4); }
+.au-voice-diag { margin-top: var(--sp-3); }
+.au-voice-diag b { font-size: var(--fs-small); color: var(--ink); }
+.au-voice-diag pre {
+  margin: var(--sp-2) 0 0;
+  padding: var(--sp-3);
+  background: var(--paper-2, var(--card));
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm, 6px);
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: .72rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  white-space: pre;
+  overflow-x: auto;
+}
 
 </style>
 <style>
@@ -30307,12 +30322,32 @@ window.ARE_COACH_ATTEMPTS = {
     } catch (e) { /* speech unavailable; cache stays empty */ }
     return cache;
   }
+  /* Anyone rendering a voice list needs to redraw when the list changes.
+     On iOS the list frequently arrives AFTER first paint, and it changes
+     again the moment a new voice finishes downloading in Settings. Without
+     this, installing a better voice and returning to the app shows the old
+     list and the feature looks broken. */
+  var watchers = [];
+  function onChange(fn) { if (typeof fn === 'function') watchers.push(fn); }
+  function announce() {
+    for (var i = 0; i < watchers.length; i++) {
+      try { watchers[i](); } catch (e) { /* one bad watcher must not stop the rest */ }
+    }
+  }
   try {
     if (root.speechSynthesis && 'onvoiceschanged' in root.speechSynthesis) {
-      root.speechSynthesis.addEventListener('voiceschanged', refresh);
+      root.speechSynthesis.addEventListener('voiceschanged', function () {
+        refresh(); announce();
+      });
     }
   } catch (e) { /* older engine, refresh() on access still covers it */ }
   refresh();
+  /* iOS in particular can report nothing until a beat after load. Two cheap
+     late re-reads cost nothing and cover it without polling forever. */
+  try {
+    root.setTimeout(function () { var n = cache.length; refresh(); if (cache.length !== n) announce(); }, 400);
+    root.setTimeout(function () { var n = cache.length; refresh(); if (cache.length !== n) announce(); }, 1500);
+  } catch (e) { /* no timers; the voiceschanged listener still covers it */ }
 
   function score(v) {
     var n = (v.name || '').toLowerCase();
@@ -30453,9 +30488,26 @@ window.ARE_COACH_ATTEMPTS = {
     };
   }
 
+  /* Exactly what this device reports, unranked and unfiltered. When a voice
+     is installed but does not show up where expected, this is the thing to
+     read — iOS does not always put "Premium" or "Enhanced" in the name, so a
+     newly downloaded voice can arrive under a plain name like "Samantha"
+     with better audio behind it and nothing to distinguish it. */
+  function report() {
+    return refresh().map(function (v) {
+      return {
+        name: v.name, lang: v.lang,
+        local: v.localService, def: v.default,
+        english: /^en(-|_|$)/i.test(v.lang || ''),
+        score: score(v)
+      };
+    });
+  }
+
   root.ARECoachVoice = {
     list: list, current: current, apply: apply, sample: sample,
     saved: saved, save: save, usingBest: usingBest, installHint: installHint,
+    onChange: onChange, report: report,
     _score: score
   };
 })(window);
@@ -30488,6 +30540,21 @@ window.ARE_COACH_ATTEMPTS = {
   var UI = root.ARECoachUI;
   if (!E || !UI) return;
   var esc = UI._esc, paint = UI._paint;
+
+  /* Raw voice table, for when something is installed but not showing up.
+     Screenshot-able and small enough to read on a phone. */
+  function diagText() {
+    var V = root.ARECoachVoice;
+    if (!V || !V.report) return 'unavailable';
+    var rows = V.report();
+    if (!rows.length) return 'This browser reports no voices at all.';
+    return rows.map(function (r) {
+      return (r.english ? '' : '(not en) ')
+        + r.name + '  [' + (r.lang || '?') + ']'
+        + (r.local === false ? '  cloud' : '')
+        + '  rank ' + r.score;
+    }).join(String.fromCharCode(10));
+  }
 
   /* A string safe to sit inside an inline onclick="" as a JS literal.
      Voice names are not tame identifiers — real ones include
@@ -30645,7 +30712,12 @@ window.ARE_COACH_ATTEMPTS = {
           + '<p class="coach-note au-warn">This browser is not offering any voices. '
           + 'On ' + esc(hint.os) + ': ' + esc(hint.steps) + '</p>';
       } else {
-        var shown = voices.slice(0, 6);
+        /* Every English voice, not a top-six. iOS does not always mark a
+           newly downloaded voice as Premium or Enhanced, so ranking can put
+           the one he just installed below a cut and the feature looks like
+           it did nothing. Showing all of them is the honest default; the
+           list is short on every real device. */
+        var shown = voices;
         var rows = shown.map(function (v) {
           var on = picked && picked.name === v.name;
           return '<div class="au-voice' + (on ? ' on' : '') + '">'
@@ -30665,7 +30737,13 @@ window.ARE_COACH_ATTEMPTS = {
             + '<p class="coach-note">The best voices are a free download your phone does not '
             + 'install by default. On ' + esc(hint.os) + ': ' + esc(hint.steps) + '</p>'
             + '<p class="coach-note">No internet voice is used here, on purpose — this has '
-            + 'to keep talking in a tunnel with no signal.</p></details>';
+            + 'to keep talking in a tunnel with no signal.</p>'
+            + '<p class="coach-note">Installed one and it is not in the list above? '
+            + 'The list refreshes by itself, but you can force it by closing and '
+            + 'reopening this screen.</p>'
+            + '<div class="au-voice-diag"><b>What this device reports</b>'
+              + '<pre>' + esc(diagText()) + '</pre></div>'
+            + '</details>';
       }
     }
 
@@ -30832,6 +30910,18 @@ window.ARE_COACH_ATTEMPTS = {
   };
 
   API.stop = function () { finish(true); };
+
+  /* Redraw the setup screen when the device's voice list changes. On iOS the
+     list arrives after first paint, and changes again when a download
+     finishes in Settings. Guarded to the setup screen only, so it can never
+     interrupt a run in progress. */
+  if (root.ARECoachVoice && root.ARECoachVoice.onChange) {
+    root.ARECoachVoice.onChange(function () {
+      if (A.playing) return;
+      if (!document.querySelector('.au-setup')) return;
+      renderSetup();
+    });
+  }
 
   root.ARECoachAudio = API;
 })(window);
